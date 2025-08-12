@@ -1,8 +1,11 @@
 import React from 'react'
+import Header from '../CommonPages/Header'
 
 function HomeLayout() {
   return (
-    <div>HomeLayout</div>
+    <>
+      <Header />
+    </>
   )
 }
 
