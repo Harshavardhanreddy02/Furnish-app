@@ -20,7 +20,7 @@ function Navbar() {
           <Link to="/" className='text-2xl font-medium'>Furnish Store</Link>
      </div>
      <div className='hidden md:flex space-x-6'>
-          <Link to="#" className='text-gray-700 hover:text-black text-sm font-medium uppercase'>Living room </Link>
+          <Link to="/collections/all" className='text-gray-700 hover:text-black text-sm font-medium uppercase'>Living room </Link>
           <Link to="#" className='text-gray-700 hover:text-black text-sm font-medium uppercase'>Bedroom </Link>
           <Link to="#" className='text-gray-700 hover:text-black text-sm font-medium uppercase'>Dining room </Link>
           <Link to="#" className='text-gray-700 hover:text-black text-sm font-medium uppercase'>Office room </Link>
