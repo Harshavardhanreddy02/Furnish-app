@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Myorder() {
   const [orders, setorders] = useState([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     setTimeout(() => {
@@ -76,6 +78,11 @@ function Myorder() {
     }, 1000);
   }, []);
 
+  const handlerowclick = (orderid) =>
+  {
+        navigate(`/order/${orderid}`)
+  }
+
   return (
     <div className="max-w-7xl mx-auto p-4 sm:p-6">
       <h2 className="text-2xl font-bold mb-6 text-gray-800">My Orders</h2>
@@ -97,7 +104,7 @@ function Myorder() {
               orders.map((order) => (
                 <tr
                   key={order._id}
-                  className="border-b hover:bg-gray-50 transition duration-150"
+                  className="border-b hover:bg-gray-50 transition duration-150 cursor-pointer" onClick={() => handlerowclick(order._id) }
                 >
                   <td className="px-6 py-4">
                     <img

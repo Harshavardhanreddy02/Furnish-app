@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Paypalbutton from './Paypalbutton';
+import RazorpayButton from './RazorpayButton';
 
 function Checkout() {
   const navigate = useNavigate();
@@ -46,13 +46,10 @@ function Checkout() {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-7xl mx-auto py-12 px-6 tracking-tight">
-      
-      {/* Left: Shipping Form */}
+      {/* Shipping Form */}
       <div className="bg-white shadow-lg rounded-2xl p-10">
         <h2 className="text-3xl font-bold uppercase mb-8 tracking-wide">Checkout</h2>
         <form onSubmit={handlecreatecheckout}>
-          
-          {/* Contact */}
           <h3 className="text-xl font-semibold mb-4 text-gray-800">Contact Details</h3>
           <div className="mb-6">
             <label className="block text-gray-600 mb-1">Email</label>
@@ -63,151 +60,87 @@ function Checkout() {
               className="w-full p-3 border rounded-lg bg-gray-100 text-gray-500"
             />
           </div>
-
-          {/* Delivery */}
           <h3 className="text-xl font-semibold mb-4 text-gray-800">Delivery</h3>
           <div className="mb-4 grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-gray-600 mb-1">First Name</label>
-              <input
-                type="text"
-                required
-                value={shippingaddress.firstname}
-                onChange={(e) =>
-                  setshippingaddress({ ...shippingaddress, firstname: e.target.value })
-                }
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-              />
-            </div>
-            <div>
-              <label className="block text-gray-600 mb-1">Last Name</label>
-              <input
-                type="text"
-                required
-                value={shippingaddress.lastname}
-                onChange={(e) =>
-                  setshippingaddress({ ...shippingaddress, lastname: e.target.value })
-                }
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-              />
-            </div>
+            <input type="text" required placeholder="First Name" value={shippingaddress.firstname} onChange={(e) => setshippingaddress({ ...shippingaddress, firstname: e.target.value })} className="w-full p-3 border rounded-lg" />
+            <input type="text" required placeholder="Last Name" value={shippingaddress.lastname} onChange={(e) => setshippingaddress({ ...shippingaddress, lastname: e.target.value })} className="w-full p-3 border rounded-lg" />
           </div>
-
-          <div className="mb-4">
-            <label className="block text-gray-600 mb-1">Address</label>
-            <input
-              type="text"
-              required
-              value={shippingaddress.address}
-              onChange={(e) =>
-                setshippingaddress({ ...shippingaddress, address: e.target.value })
-              }
-              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-            />
-          </div>
-
+          <input type="text" required placeholder="Address" value={shippingaddress.address} onChange={(e) => setshippingaddress({ ...shippingaddress, address: e.target.value })} className="w-full mb-4 p-3 border rounded-lg" />
           <div className="mb-4 grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-gray-600 mb-1">City</label>
-              <input
-                type="text"
-                required
-                value={shippingaddress.city}
-                onChange={(e) =>
-                  setshippingaddress({ ...shippingaddress, city: e.target.value })
-                }
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+            <input type="text" required placeholder="City" value={shippingaddress.city} onChange={(e) => setshippingaddress({ ...shippingaddress, city: e.target.value })} className="w-full p-3 border rounded-lg" />
+            <input type="text" required placeholder="Postal Code" value={shippingaddress.postalcode} onChange={(e) => setshippingaddress({ ...shippingaddress, postalcode: e.target.value })} className="w-full p-3 border rounded-lg" />
+          </div>
+          <input type="text" required placeholder="Country" value={shippingaddress.country} onChange={(e) => setshippingaddress({ ...shippingaddress, country: e.target.value })} className="w-full mb-4 p-3 border rounded-lg" />
+          <input type="tel" required placeholder="Phone" value={shippingaddress.phone} onChange={(e) => setshippingaddress({ ...shippingaddress, phone: e.target.value })} className="w-full mb-6 p-3 border rounded-lg" />
+
+          {!checkoutid ? (
+            <button type="submit" className="w-full bg-black text-white font-semibold py-3 rounded-xl hover:bg-gray-900 transition">Continue to Payment</button>
+          ) : (
+            <div className="pt-4">
+              <h3 className="text-lg font-semibold mb-2">Pay with UPI</h3>
+              <RazorpayButton
+                amount={cart.totalprice}
+                onSuccess={handlepaymentsuccess}
+                onError={() => alert("Payment failed")}
               />
             </div>
-            <div>
-              <label className="block text-gray-600 mb-1">Postal Code</label>
-              <input
-                type="text"
-                required
-                value={shippingaddress.postalcode}
-                onChange={(e) =>
-                  setshippingaddress({ ...shippingaddress, postalcode: e.target.value })
-                }
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-              />
-            </div>
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-gray-600 mb-1">Country</label>
-            <input
-              type="text"
-              required
-              value={shippingaddress.country}
-              onChange={(e) =>
-                setshippingaddress({ ...shippingaddress, country: e.target.value })
-              }
-              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-            />
-          </div>
-
-          <div className="mb-6">
-            <label className="block text-gray-600 mb-1">Phone Number</label>
-            <input
-              type="tel"
-              required
-              value={shippingaddress.phone}
-              onChange={(e) =>
-                setshippingaddress({ ...shippingaddress, phone: e.target.value })
-              }
-              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-            />
-          </div>
-
-          <div>
-            {!checkoutid ? (
-              <button
-                type="submit"
-                className="w-full bg-black text-white font-semibold py-3 rounded-xl hover:bg-gray-900 transition duration-300"
-              >
-                Continue to Payment
-              </button>
-            ) : (
-              <div className="pt-4">
-                <h3 className="text-lg font-semibold mb-2">Pay with PayPal</h3>
-                <Paypalbutton
-                  amount={cart.totalprice}
-                  onSuccess={handlepaymentsuccess}
-                  onError={() => alert("Payment failed")}
-                />
-              </div>
-            )}
-          </div>
+          )}
         </form>
       </div>
 
-      {/* Right: Order Summary */}
+      {/* Order Summary */}
       <div className="bg-white shadow-lg rounded-2xl p-10 h-fit">
-        <h2 className="text-2xl font-bold mb-6 text-gray-800">Order Summary</h2>
-        <div className="space-y-6">
-          {cart.products.map((item, i) => (
-            <div key={i} className="flex items-center gap-4 border-b pb-4">
-              <img
-                src={item.image}
-                alt={item.name}
-                className="w-20 h-20 object-cover rounded-lg"
-              />
-              <div>
-                <h4 className="text-base font-medium text-gray-900">{item.name}</h4>
-                <p className="text-sm text-gray-500">
-                  Size: {item.size} | Color: {item.color}
-                </p>
-                <p className="text-base font-semibold mt-1 text-gray-800">₹{item.price.toFixed(2)}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        <hr className="my-6" />
-        <div className="flex justify-between font-semibold text-xl text-gray-900">
-          <span>Total:</span>
-          <span>₹{cart.totalprice.toFixed(2)}</span>
+  <h2 className="text-2xl font-bold mb-6 text-gray-800">Order Summary</h2>
+
+  <div className="space-y-6">
+    {cart.products.map((item, i) => (
+      <div key={i} className="flex items-center gap-4 border-b pb-4">
+        <img
+          src={item.image}
+          alt={item.name}
+          className="w-20 h-20 object-cover rounded-lg"
+        />
+        <div>
+          <h4 className="text-base font-medium text-gray-900">{item.name}</h4>
+          <p className="text-sm text-gray-500">
+            Size: {item.size} | Color: {item.color}
+          </p>
+          <p className="text-base font-semibold mt-1 text-gray-800">
+            ₹{item.price.toFixed(2)}
+          </p>
         </div>
       </div>
+    ))}
+  </div>
+
+  <hr className="my-6" />
+
+  {/* Pricing Breakdown */}
+  <div className="space-y-3 text-gray-800">
+    <div className="flex justify-between text-base">
+      <span>Subtotal</span>
+      <span>₹{cart.totalprice.toFixed(2)}</span>
+    </div>
+    <div className="flex justify-between text-base">
+      <span>Shipping</span>
+      <span className="text-green-700 font-medium">₹100.00</span>
+    </div>
+    Optional Tax or Discount
+    <div className="flex justify-between text-base">
+      <span>GST (18%)</span>
+      <span>₹{(cart.totalprice * 0.18).toFixed(2)}</span>
+    </div>
+   
+  </div>
+
+  <hr className="my-4" />
+
+  <div className="flex justify-between font-semibold text-xl text-gray-900">
+    <span>Total:</span>
+    <span>₹{(cart.totalprice + 100).toFixed(2)}</span>
+  </div>
+</div>
+
     </div>
   );
 }
