@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Myorder() {
   const [orders, setorders] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
@@ -11,66 +11,61 @@ function Myorder() {
         {
           _id: '123',
           createdAt: new Date(),
-          shippingaddress: { city: 'newYork', country: 'USA' },
+          shippingaddress: { city: 'New York', country: 'USA' },
           orderitems: [
             {
-              name: 'Product 1',
-              image: 'https://picsum.photos/500/500?random=17',
+              name: 'Modern Sofa',
+              color: 'Grey',
+              dimension: '200x90x80 cm',
+              image: 'https://picsum.photos/500/500?random=1',
             },
           ],
-          totalprice: 100,
+          totalprice: 499.99,
           ispaid: true,
         },
         {
-          _id: '1234',
+          _id: '124',
           createdAt: new Date(),
-          shippingaddress: { city: 'Delhi', country: 'india' },
+          shippingaddress: { city: 'Delhi', country: 'India' },
           orderitems: [
             {
-              name: 'Product 2',
-              image: 'https://picsum.photos/500/500?random=18',
+              name: 'Dining Chair Set (2 pcs)',
+              color: 'Black',
+              dimension: '50x50x90 cm',
+              image: 'https://picsum.photos/500/500?random=2',
             },
           ],
-          totalprice: 130,
+          totalprice: 199.99,
           ispaid: true,
         },
         {
-          _id: '122',
+          _id: '125',
           createdAt: new Date(),
-          shippingaddress: { city: 'sunny', country: 'moent' },
+          shippingaddress: { city: 'Mumbai', country: 'India' },
           orderitems: [
             {
-              name: 'Product 3',
-              image: 'https://picsum.photos/500/500?random=19',
+              name: 'Wooden Coffee Table',
+              color: 'Brown',
+              dimension: '120x60x45 cm',
+              image: 'https://picsum.photos/500/500?random=3',
             },
           ],
-          totalprice: 190,
-          ispaid: true,
+          totalprice: 299.99,
+          ispaid: false,
         },
         {
-          _id: '1239',
+          _id: '126',
           createdAt: new Date(),
-          shippingaddress: { city: 'pick', country: 'rak' },
+          shippingaddress: { city: 'Chicago', country: 'USA' },
           orderitems: [
             {
-              name: 'Product 4',
-              image: 'https://picsum.photos/500/500?random=20',
+              name: 'Recliner Chair',
+              color: 'Beige',
+              dimension: '100x90x100 cm',
+              image: 'https://picsum.photos/500/500?random=4',
             },
           ],
-          totalprice: 130,
-          ispaid: true,
-        },
-        {
-          _id: '12389',
-          createdAt: new Date(),
-          shippingaddress: { city: 'dei', country: 'india' },
-          orderitems: [
-            {
-              name: 'Product 1',
-              image: 'https://picsum.photos/500/500?random=21',
-            },
-          ],
-          totalprice: 130,
+          totalprice: 399.99,
           ispaid: true,
         },
       ];
@@ -78,10 +73,9 @@ function Myorder() {
     }, 1000);
   }, []);
 
-  const handlerowclick = (orderid) =>
-  {
-        navigate(`/order/${orderid}`)
-  }
+  const handlerowclick = (orderid) => {
+    navigate(`/order/${orderid}`);
+  };
 
   return (
     <div className="max-w-7xl mx-auto p-4 sm:p-6">
@@ -104,7 +98,8 @@ function Myorder() {
               orders.map((order) => (
                 <tr
                   key={order._id}
-                  className="border-b hover:bg-gray-50 transition duration-150 cursor-pointer" onClick={() => handlerowclick(order._id) }
+                  className="border-b hover:bg-gray-50 transition duration-150 cursor-pointer"
+                  onClick={() => handlerowclick(order._id)}
                 >
                   <td className="px-6 py-4">
                     <img
@@ -125,8 +120,10 @@ function Myorder() {
                       ? `${order.shippingaddress.city}, ${order.shippingaddress.country}`
                       : 'N/A'}
                   </td>
-                  <td className="px-6 py-4">{order.orderitems.length}</td>
-                  <td className="px-6 py-4">${order.totalprice}</td>
+                  <td className="px-6 py-4">
+                    {order.orderitems.length}
+                  </td>
+                  <td className="px-6 py-4">${order.totalprice.toLocaleString()}</td>
                   <td className="px-6 py-4">
                     <span
                       className={`${

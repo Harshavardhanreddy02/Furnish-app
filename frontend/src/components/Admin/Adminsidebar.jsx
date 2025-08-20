@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
-import { FaBoxOpen, FaClipboardCheck, FaClipboardList, FaSignOutAlt, FaStore, FaUser } from 'react-icons/fa'
+import { FaBoxOpen, FaClipboardList, FaSignOutAlt, FaStore, FaUser, FaCouch } from 'react-icons/fa'
 
 function Adminsidebar() {
   const navigate = useNavigate()
@@ -11,6 +11,7 @@ function Adminsidebar() {
 
   return (
     <div className='p-6'>
+      {/* Brand */}
       <div className='mb-6'>
         <Link to="/admin" className="text-2xl font-medium">Furnish Store</Link>
       </div>
@@ -19,6 +20,7 @@ function Adminsidebar() {
         Admin Dashboard
       </h2>
 
+      {/* Navigation */}
       <nav className='flex flex-col space-y-2'>
         <NavLink
           to='/admin/users'
@@ -29,7 +31,7 @@ function Adminsidebar() {
           }
         >
           <FaUser />
-          <span>Users</span>
+          <span>Customers</span>
         </NavLink>
 
         <NavLink
@@ -40,8 +42,8 @@ function Adminsidebar() {
               : "text-gray-300 hover:bg-gray-700 hover:text-white py-3 px-4 rounded flex items-center space-x-2"
           }
         >
-          <FaBoxOpen />
-          <span>Products</span>
+          <FaCouch />
+          <span>Furniture</span>
         </NavLink>
 
         <NavLink
@@ -69,6 +71,7 @@ function Adminsidebar() {
         </NavLink>
       </nav>
 
+      {/* Logout */}
       <div className='mt-6'>
         <button
           className='w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded flex items-center justify-center space-x-2'
@@ -83,4 +86,5 @@ function Adminsidebar() {
 }
 
 export default Adminsidebar
+
 

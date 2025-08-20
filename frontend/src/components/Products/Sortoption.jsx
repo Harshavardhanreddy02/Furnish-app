@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-function Sortoption() {
+function SortOption() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleSortChange = (e) => {
@@ -36,4 +36,4 @@ function Sortoption() {
   );
 }
 
-export default Sortoption;
+export default SortOption;

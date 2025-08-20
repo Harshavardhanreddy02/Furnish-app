@@ -18,11 +18,11 @@ function Adminlayout() {
   return (
     <div className="min-h-screen flex flex-col md:flex-row relative">
       {/* Mobile Topbar */}
-      <div className="flex md:hidden p-4 bg-gray-900 text-white z-20 items-center">
+      <div className="flex md:hidden p-4 bg-brown-800 text-white z-20 items-center">
         <button onClick={togglesidebar}>
           <FaBars size={24} />
         </button>
-        <h1 className="ml-4 text-2xl font-semibold">Admin Dashboard</h1>
+        <h1 className="ml-4 text-2xl font-semibold">Furnish Store Admin</h1>
       </div>
 
       {/* Mobile overlay when sidebar is open */}

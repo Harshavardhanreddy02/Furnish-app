@@ -9,36 +9,12 @@ import interior from '../../images/interior.jpg';
 import img6 from '../../images/1.jpg';
 
 const collections = [
-  {
-    name: "Living Room",
-    image: img2,
-    link: "/collection/all?room=living"
-  },
-  {
-    name: "Bedroom",
-    image: img3,
-    link: "/collection/all?room=bedroom"
-  },
-  {
-    name: "Dining Room",
-    image: img4,
-    link: "/collection/all?room=dining"
-  },
-  {
-    name: "Office",
-    image: img5,
-    link: "/collection/all?room=office"
-  },
-  {
-    name: "Kids Room",
-    image: interior,
-    link: "/collection/all?room=kids"
-  },
-  {
-    name: "Outdoor",
-    image: img6,
-    link: "/collection/all?room=outdoor"
-  },
+  { name: "Living Room", image: img2, link: "/collection/all?room=living" },
+  { name: "Bedroom", image: img3, link: "/collection/all?room=bedroom" },
+  { name: "Dining Room", image: img4, link: "/collection/all?room=dining" },
+  { name: "Office", image: img5, link: "/collection/all?room=office" },
+  { name: "Kids Room", image: interior, link: "/collection/all?room=kids" },
+  { name: "Outdoor", image: img6, link: "/collection/all?room=outdoor" },
 ];
 
 function Collection() {

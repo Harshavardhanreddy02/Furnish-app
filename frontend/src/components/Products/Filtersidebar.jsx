@@ -23,9 +23,9 @@ function Filtersidebar() {
   const materials = ["Wood", "Metal", "Plastic", "Glass", "Leather"];
   const brands = ["UrbanWood", "Godrej", "IKEA", "HomeTown", "Pepperfry"];
 
+  // Initialize filters from URL params
   useEffect(() => {
     const params = Object.fromEntries([...searchparams]);
-
     setfilters({
       category: params.category || "",
       room: params.room || "",
@@ -35,13 +35,13 @@ function Filtersidebar() {
       minprice: parseInt(params.minprice) || 0,
       maxprice: parseInt(params.maxprice) || 100000,
     });
-
     setpricerange([
       parseInt(params.minprice) || 0,
       parseInt(params.maxprice) || 100000,
     ]);
   }, [searchparams]);
 
+  // Handle filter changes
   const handlefilterchange = (e) => {
     const { name, value, checked, type } = e.target;
     let newfilters = { ...filters };
@@ -85,7 +85,6 @@ function Filtersidebar() {
   const handlepricechange = (e) => {
     const newPrice = e.target.value;
     setpricerange([0, newPrice]);
-
     const newfilters = { ...filters, minprice: 0, maxprice: newPrice };
     setfilters(newfilters);
     updateurlparams(newfilters);

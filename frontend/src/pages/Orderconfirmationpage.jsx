@@ -1,37 +1,37 @@
 import React from 'react';
 
-function Orderconfirmationpage() {
+function OrderConfirmationPage() {
   const checkout = [
     {
       productId: 1,
-      name: "Jacket",
-      color: "black",
-      size: "M",
+      name: "Modern Sofa",
+      color: "Beige",
+      size: "3-Seater",
       price: 150,
       quantity: 1,
       image: "https://picsum.photos/150?random=1",
     },
     {
       productId: 2,
-      name: "Poioi",
-      color: "white",
-      size: "F",
+      name: "Dining Table",
+      color: "Walnut",
+      size: "6-Seater",
       price: 100,
       quantity: 2,
       image: "https://picsum.photos/150?random=2",
     }
   ];
 
-  const shippingaddress = {
-    address: "123, hshha",
+  const shippingAddress = {
+    address: "123, kerala",
     city: "New York",
     country: "USA",
   };
 
-  const calculateestimateddelivery = (createdAt) => {
-    const orderdate = new Date(createdAt);
-    orderdate.setDate(orderdate.getDate() + 10);
-    return orderdate.toLocaleDateString();
+  const calculateEstimatedDelivery = (createdAt) => {
+    const orderDate = new Date(createdAt);
+    orderDate.setDate(orderDate.getDate() + 10);
+    return orderDate.toLocaleDateString();
   };
 
   return (
@@ -51,7 +51,7 @@ function Orderconfirmationpage() {
             </p>
           </div>
           <div className='text-emerald-700 text-sm font-medium'>
-            Estimated Delivery: {calculateestimateddelivery(new Date())}
+            Estimated Delivery: {calculateEstimatedDelivery(new Date())}
           </div>
         </div>
 
@@ -69,7 +69,7 @@ function Orderconfirmationpage() {
               </div>
               <div className='ml-auto text-right'>
                 <p className='text-md'>
-                  ${item.price}
+                  ₹{item.price}
                 </p>
                 <p className='text-sm text-gray-500'>
                   Qty: {item.quantity}
@@ -93,10 +93,10 @@ function Orderconfirmationpage() {
               Delivery
             </h4>
             <p className='text-gray-700'>
-              {shippingaddress.address}
+              {shippingAddress.address}
             </p>
             <p className='text-gray-700'>
-              {shippingaddress.city}, {shippingaddress.country}
+              {shippingAddress.city}, {shippingAddress.country}
             </p>
           </div>
         </div>
@@ -105,4 +105,4 @@ function Orderconfirmationpage() {
   );
 }
 
-export default Orderconfirmationpage;
+export default OrderConfirmationPage;

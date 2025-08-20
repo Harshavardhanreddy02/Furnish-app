@@ -1,44 +1,59 @@
-import React from 'react'
-import {useState} from 'react'
-import { HiMagnifyingGlass, HiMiniXMark } from 'react-icons/hi2';
+import React, { useState } from 'react'
+import { HiMagnifyingGlass, HiMiniXMark } from 'react-icons/hi2'
 
 function Searchbar() {
-     const [searchTerm,setsearchTerm] = useState("");
-     const [isOpen,setisOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("")
+  const [isOpen, setIsOpen] = useState(false)
 
-     const handleSearchToggle = () =>
-     {
-          setisOpen(!isOpen);
-     }
-     const handleSearch = (e) =>
-     {
-          e.preventDefault();
-          setisOpen(false);
-         
-     }
+  const handleSearchToggle = () => {
+    setIsOpen(!isOpen)
+  }
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    // Optionally trigger a real search action here
+    setIsOpen(false)
+  }
+
   return (
-    <div className={`flex items-center justify-center w-full transition-all duration-300 ${isOpen ? "absolute top-0 left-0 w-full bg-white h-24 z-50":"w-auto"}`}>
-     {
-          isOpen?(<form onSubmit={handleSearch} className='relative flex items-center justify-center w-full ' >
-               <div className='relative w-1/2 '>
-               <input type="text" placeholder='Search' value={searchTerm} onChange={(e) => setsearchTerm(e.target.value)} className='bg-gray-100 px-4 py-2 pl-2 pr-12 rounded-lg focus:outline-none w-full placeholder:text-gray-700' />
-               <button type="submit" className='absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-gray-800'>
-                    <HiMagnifyingGlass className='h-6 w-6'/>
-               </button>
-               </div>
+    <div
+      className={`flex items-center justify-center transition-all duration-300 ${
+        isOpen
+          ? "absolute top-0 left-0 w-full bg-white h-24 z-50"
+          : "w-auto"
+      }`}
+    >
+      {isOpen ? (
+        <form onSubmit={handleSearch} className='relative flex items-center justify-center w-full'>
+          <div className='relative w-4/5 sm:w-1/2'>
+            <input
+              type="text"
+              placeholder='Search furniture by name, room or style...'
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className='bg-gray-100 px-4 py-2 pr-12 rounded-lg focus:outline-none w-full placeholder:text-gray-700'
+            />
+            <button
+              type="submit"
+              className='absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-gray-800'
+            >
+              <HiMagnifyingGlass className='h-6 w-6' />
+            </button>
+          </div>
 
-               <button type="button" className='absolute right-4  top-1/2 transform  -translate-y-1/2 text-gray-600 hover:text-gray-800' onClick={handleSearchToggle}>
-                    <HiMiniXMark  className='h-7 w-7 cursor-pointer'/>
-               </button>
-
-          </form>):(
-               <button onClick={handleSearchToggle}>
-                    <HiMagnifyingGlass className='h-6 w-6 cursor-pointer'/>
-               </button>
-          )
-     }
-
-
+          <button
+            type="button"
+            className='absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-gray-800'
+            onClick={handleSearchToggle}
+          >
+            <HiMiniXMark className='h-7 w-7 cursor-pointer' />
+          </button>
+        </form>
+      ) : (
+        <button onClick={handleSearchToggle}>
+          <HiMagnifyingGlass className='h-6 w-6 cursor-pointer' />
+        </button>
+      )}
     </div>
   )
 }

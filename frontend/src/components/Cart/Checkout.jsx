@@ -18,21 +18,21 @@ function Checkout() {
   const cart = {
     products: [
       {
-        name: "Stylish Jacket",
-        size: "M",
-        color: "black",
-        price: 120,
+        name: "Modern Sofa",
+        size: "3-Seater",
+        color: "Beige",
+        price: 17999,
         image: "https://picsum.photos/150?random=1",
       },
       {
-        name: "Stylish Shirt",
-        size: "F",
-        color: "black",
-        price: 12,
+        name: "Dining Table",
+        size: "6-Seater",
+        color: "Walnut",
+        price: 24999,
         image: "https://picsum.photos/150?random=2",
       }
     ],
-    totalprice: 130,
+    totalprice: 42998,
   };
 
   const handlecreatecheckout = (e) => {
@@ -40,7 +40,7 @@ function Checkout() {
     setcheckoutid("dummy-checkout-id");
   };
 
-  const handlepaymentsuccess = (details) => {
+  const handlepaymentsuccess = () => {
     navigate('/order-confirmation');
   };
 
@@ -90,57 +90,54 @@ function Checkout() {
 
       {/* Order Summary */}
       <div className="bg-white shadow-lg rounded-2xl p-10 h-fit">
-  <h2 className="text-2xl font-bold mb-6 text-gray-800">Order Summary</h2>
+        <h2 className="text-2xl font-bold mb-6 text-gray-800">Order Summary</h2>
 
-  <div className="space-y-6">
-    {cart.products.map((item, i) => (
-      <div key={i} className="flex items-center gap-4 border-b pb-4">
-        <img
-          src={item.image}
-          alt={item.name}
-          className="w-20 h-20 object-cover rounded-lg"
-        />
-        <div>
-          <h4 className="text-base font-medium text-gray-900">{item.name}</h4>
-          <p className="text-sm text-gray-500">
-            Size: {item.size} | Color: {item.color}
-          </p>
-          <p className="text-base font-semibold mt-1 text-gray-800">
-            ₹{item.price.toFixed(2)}
-          </p>
+        <div className="space-y-6">
+          {cart.products.map((item, i) => (
+            <div key={i} className="flex items-center gap-4 border-b pb-4">
+              <img
+                src={item.image}
+                alt={item.name}
+                className="w-20 h-20 object-cover rounded-lg"
+              />
+              <div>
+                <h4 className="text-base font-medium text-gray-900">{item.name}</h4>
+                <p className="text-sm text-gray-500">
+                  Size: {item.size} | Finish: {item.color}
+                </p>
+                <p className="text-base font-semibold mt-1 text-gray-800">
+                  ₹{item.price.toFixed(2)}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <hr className="my-6" />
+
+        {/* Pricing Breakdown */}
+        <div className="space-y-3 text-gray-800">
+          <div className="flex justify-between text-base">
+            <span>Subtotal</span>
+            <span>₹{cart.totalprice.toFixed(2)}</span>
+          </div>
+          <div className="flex justify-between text-base">
+            <span>Shipping</span>
+            <span className="text-green-700 font-medium">₹100.00</span>
+          </div>
+          <div className="flex justify-between text-base">
+            <span>GST (18%)</span>
+            <span>₹{(cart.totalprice * 0.18).toFixed(2)}</span>
+          </div>
+        </div>
+
+        <hr className="my-4" />
+
+        <div className="flex justify-between font-semibold text-xl text-gray-900">
+          <span>Total:</span>
+          <span>₹{(cart.totalprice + 100).toFixed(2)}</span>
         </div>
       </div>
-    ))}
-  </div>
-
-  <hr className="my-6" />
-
-  {/* Pricing Breakdown */}
-  <div className="space-y-3 text-gray-800">
-    <div className="flex justify-between text-base">
-      <span>Subtotal</span>
-      <span>₹{cart.totalprice.toFixed(2)}</span>
-    </div>
-    <div className="flex justify-between text-base">
-      <span>Shipping</span>
-      <span className="text-green-700 font-medium">₹100.00</span>
-    </div>
-    Optional Tax or Discount
-    <div className="flex justify-between text-base">
-      <span>GST (18%)</span>
-      <span>₹{(cart.totalprice * 0.18).toFixed(2)}</span>
-    </div>
-   
-  </div>
-
-  <hr className="my-4" />
-
-  <div className="flex justify-between font-semibold text-xl text-gray-900">
-    <span>Total:</span>
-    <span>₹{(cart.totalprice + 100).toFixed(2)}</span>
-  </div>
-</div>
-
     </div>
   );
 }

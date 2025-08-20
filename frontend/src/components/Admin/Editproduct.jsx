@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-function Editproduct() {
-  const [productdata, setproductdata] = useState({
+function EditProduct() {
+  const [productData, setProductData] = useState({
     name: '',
     description: '',
     price: 0,
@@ -9,46 +9,47 @@ function Editproduct() {
     sku: '',
     category: '',
     brand: '',
-    sizes: [],
-    colors: [],
-    collections: '',
-    material: '',
-    gender: '',
+    sizes: [], // e.g., "Small, Medium, Large" for sofas or beds
+    colors: [], // e.g., "Red, Blue, Brown"
+    collection: '',
+    material: '', // e.g., "Wood, Leather"
     images: [
       { url: 'https://picsum.photos/150?random=1' },
       { url: 'https://picsum.photos/150?random=2' },
     ],
   });
 
-  const handlechange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setproductdata((prevdata) => ({ ...prevdata, [name]: value }));
+    setProductData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleimageupload = async (e) => {
+  const handleImageUpload = async (e) => {
     const file = e.target.files[0];
-    console.log(file);
-    // Add upload logic here (e.g., Cloudinary or Firebase)
+    console.log('Upload file:', file);
+    // Add upload logic here (Cloudinary/Firebase)
   };
 
-  const handlesubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(productdata); // replace with API call
+    console.log('Furniture Product Updated:', productData);
+    // Replace with API call
   };
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-10">
-      <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Edit Product</h2>
-      <form onSubmit={handlesubmit}>
+      <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Edit Furniture Product</h2>
+      <form onSubmit={handleSubmit}>
         {/* Product Name */}
         <div className="mb-5">
           <label className="block font-semibold mb-2">Product Name</label>
           <input
             type="text"
             name="name"
-            value={productdata.name}
-            onChange={handlechange}
+            value={productData.name}
+            onChange={handleChange}
             className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="E.g., Modern Sofa"
             required
           />
         </div>
@@ -58,10 +59,11 @@ function Editproduct() {
           <label className="block font-semibold mb-2">Description</label>
           <textarea
             name="description"
-            value={productdata.description}
-            onChange={handlechange}
+            value={productData.description}
+            onChange={handleChange}
             rows={4}
             className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Describe the furniture product..."
             required
           ></textarea>
         </div>
@@ -72,22 +74,24 @@ function Editproduct() {
           <input
             type="number"
             name="price"
-            value={productdata.price}
-            onChange={handlechange}
+            value={productData.price}
+            onChange={handleChange}
             className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="E.g., 499"
             required
           />
         </div>
 
         {/* Count in Stock */}
         <div className="mb-5">
-          <label className="block font-semibold mb-2">Count in Stock</label>
+          <label className="block font-semibold mb-2">Stock Quantity</label>
           <input
             type="number"
             name="countInStock"
-            value={productdata.countInStock}
-            onChange={handlechange}
+            value={productData.countInStock}
+            onChange={handleChange}
             className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="E.g., 20"
             required
           />
         </div>
@@ -98,9 +102,10 @@ function Editproduct() {
           <input
             type="text"
             name="sku"
-            value={productdata.sku}
-            onChange={handlechange}
+            value={productData.sku}
+            onChange={handleChange}
             className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="E.g., SOF101"
             required
           />
         </div>
@@ -110,16 +115,14 @@ function Editproduct() {
           <label className="block font-semibold mb-2">Sizes (comma-separated)</label>
           <input
             type="text"
-            name="sizes"
-            value={productdata.sizes.join(',')}
+            value={productData.sizes.join(',')}
             onChange={(e) =>
-              setproductdata({
-                ...productdata,
+              setProductData({
+                ...productData,
                 sizes: e.target.value.split(',').map((s) => s.trim()),
               })
             }
             className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            required
           />
         </div>
 
@@ -128,29 +131,53 @@ function Editproduct() {
           <label className="block font-semibold mb-2">Colors (comma-separated)</label>
           <input
             type="text"
-            name="colors"
-            value={productdata.colors.join(',')}
+            value={productData.colors.join(',')}
             onChange={(e) =>
-              setproductdata({
-                ...productdata,
+              setProductData({
+                ...productData,
                 colors: e.target.value.split(',').map((c) => c.trim()),
               })
             }
             className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            required
+          />
+        </div>
+
+        {/* Material */}
+        <div className="mb-5">
+          <label className="block font-semibold mb-2">Material</label>
+          <input
+            type="text"
+            name="material"
+            value={productData.material}
+            onChange={handleChange}
+            className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="E.g., Wood, Leather"
+          />
+        </div>
+
+        {/* Collection */}
+        <div className="mb-5">
+          <label className="block font-semibold mb-2">Collection</label>
+          <input
+            type="text"
+            name="collection"
+            value={productData.collection}
+            onChange={handleChange}
+            className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="E.g., Modern, Classic"
           />
         </div>
 
         {/* Image Upload */}
         <div className="mb-5">
-          <label className="block font-semibold mb-2">Upload Image</label>
-          <input type="file" onChange={handleimageupload} />
+          <label className="block font-semibold mb-2">Upload Images</label>
+          <input type="file" onChange={handleImageUpload} />
           <div className="flex flex-wrap gap-4 mt-4">
-            {productdata.images.map((image, index) => (
-              <div key={index}>
+            {productData.images.map((img, idx) => (
+              <div key={idx}>
                 <img
-                  src={image.url}
-                  alt={`product-${index}`}
+                  src={img.url}
+                  alt={`furniture-${idx}`}
                   className="w-20 h-20 object-cover rounded-md shadow-md hover:scale-105 transition-transform"
                 />
               </div>
@@ -170,4 +197,4 @@ function Editproduct() {
   );
 }
 
-export default Editproduct;
+export default EditProduct;
