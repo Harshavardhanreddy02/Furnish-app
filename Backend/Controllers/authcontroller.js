@@ -85,4 +85,10 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { register, login };
+
+const profile = async (req,res) =>
+{
+    res.json(req.user)
+}
+
+module.exports = { register, login ,profile};
