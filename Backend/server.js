@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const connectdb = require("./Config/db")
 const userroute = require('./routes/Userroute')
 const productroute = require('./routes/Productroutes')
+const cartroute = require('./routes/Cartroutes')
 
 
 dotenv.config();  
@@ -18,6 +19,7 @@ app.use(express.json());
 
 app.use("/api/users", userroute);
 app.use("/api/products", productroute);
+app.use('/api/cart',cartroute)
 
 // Routes placeholder
 app.get('/', (req, res) => {

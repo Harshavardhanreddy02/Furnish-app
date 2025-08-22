@@ -7,6 +7,7 @@ function OrderConfirmationPage() {
       name: "Modern Sofa",
       color: "Beige",
       size: "3-Seater",
+      dimension: "200x90x80 cm", // <-- dimension added
       price: 150,
       quantity: 1,
       image: "https://picsum.photos/150?random=1",
@@ -16,6 +17,7 @@ function OrderConfirmationPage() {
       name: "Dining Table",
       color: "Walnut",
       size: "6-Seater",
+      dimension: "180x90x75 cm", // <-- dimension added
       price: 100,
       quantity: 2,
       image: "https://picsum.photos/150?random=2",
@@ -64,7 +66,7 @@ function OrderConfirmationPage() {
                   {item.name}
                 </h4>
                 <p className='text-sm text-gray-500'>
-                  {item.color} | {item.size}
+                  {item.color} | {item.size} | {item.dimension} {/* <-- show dimension */}
                 </p>
               </div>
               <div className='ml-auto text-right'>

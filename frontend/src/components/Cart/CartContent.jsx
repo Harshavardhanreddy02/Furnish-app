@@ -6,7 +6,8 @@ function CartContent() {
     {
       productId: 1,
       name: "Sofa",
-      dimension: '200x100x80 cm',
+      size: 'Two Seater', // ✅ Sofa type
+      dimension: '200x100x80 cm', // ✅ Dimension
       color: 'grey',
       quantity: 1,
       price: 499.99,
@@ -15,6 +16,7 @@ function CartContent() {
     {
       productId: 2,
       name: "Chair",
+      size: 'Single Seater',
       dimension: '100x100x80 cm',
       color: 'black',
       quantity: 2,
@@ -24,6 +26,7 @@ function CartContent() {
     {
       productId: 3,
       name: "Table",
+      size: 'Standard',
       dimension: '150x90x75 cm',
       color: 'brown',
       quantity: 1,
@@ -46,7 +49,7 @@ function CartContent() {
             <div>
               <h3 className='font-medium text-gray-800'>{product.name}</h3>
               <p className='text-sm text-gray-500'>
-                Dimensions: {product.dimension} | Color: {product.color}
+                Size: {product.size} | Dimension: {product.dimension} | Color: {product.color}
               </p>
               {/* Quantity Controls */}
               <div className='flex items-center mt-2'>

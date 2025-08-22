@@ -26,6 +26,7 @@ function Productdetails() {
     material: 'Material Type',
     size: ['two seater', 'three seater', 'four seater'],
     colors: ['black', 'brown'],
+    dimension: '200 x 80 x 90 cm', // <-- dimension added
     images: [
       { url: 'https://picsum.photos/500/500?random=1', altText: 'Product Image 1' },
       { url: 'https://picsum.photos/500/500?random=2', altText: 'Product Image 2' },
@@ -194,6 +195,10 @@ function Productdetails() {
                   <tr>
                     <td className='py-2 px-4 border-b'>Material</td>
                     <td className='py-2 px-4 border-b'>{selectedproduct.material}</td>
+                  </tr>
+                  <tr>
+                    <td className='py-2 px-4 border-b'>Dimension</td>
+                    <td className='py-2 px-4 border-b'>{selectedproduct.dimension}</td>
                   </tr>
                 </tbody>
               </table>

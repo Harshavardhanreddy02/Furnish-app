@@ -20,6 +20,7 @@ function Checkout() {
       {
         name: "Modern Sofa",
         size: "3-Seater",
+        dimension: "200x90x85 cm", // ✅ Added dimension
         color: "Beige",
         price: 17999,
         image: "https://picsum.photos/150?random=1",
@@ -27,6 +28,7 @@ function Checkout() {
       {
         name: "Dining Table",
         size: "6-Seater",
+        dimension: "250x120x75 cm",
         color: "Walnut",
         price: 24999,
         image: "https://picsum.photos/150?random=2",
@@ -103,7 +105,7 @@ function Checkout() {
               <div>
                 <h4 className="text-base font-medium text-gray-900">{item.name}</h4>
                 <p className="text-sm text-gray-500">
-                  Size: {item.size} | Finish: {item.color}
+                  Size: {item.size} | Dimension: {item.dimension} | Finish: {item.color}
                 </p>
                 <p className="text-base font-semibold mt-1 text-gray-800">
                   ₹{item.price.toFixed(2)}

@@ -11,6 +11,7 @@ function Filtersidebar() {
     color: "",
     material: [],
     brand: [],
+    dimension: "", // added dimension filter
     minprice: 0,
     maxprice: 100000,
   });
@@ -22,6 +23,7 @@ function Filtersidebar() {
   const colors = ["Brown", "Black", "White", "Gray", "Beige"];
   const materials = ["Wood", "Metal", "Plastic", "Glass", "Leather"];
   const brands = ["UrbanWood", "Godrej", "IKEA", "HomeTown", "Pepperfry"];
+  const dimensions = ["2-Seater", "3-Seater", "4-Seater"]; // dimension options
 
   // Initialize filters from URL params
   useEffect(() => {
@@ -32,6 +34,7 @@ function Filtersidebar() {
       color: params.color || "",
       material: params.material ? params.material.split(",") : [],
       brand: params.brand ? params.brand.split(",") : [],
+      dimension: params.dimension || "",
       minprice: parseInt(params.minprice) || 0,
       maxprice: parseInt(params.maxprice) || 100000,
     });
@@ -126,6 +129,24 @@ function Filtersidebar() {
               className="mr-2"
             />
             {room}
+          </label>
+        ))}
+      </div>
+
+      {/* Dimension/Size Filter */}
+      <div className="mb-4">
+        <h3 className="font-semibold">Size</h3>
+        {dimensions.map((dim) => (
+          <label key={dim} className="block">
+            <input
+              type="radio"
+              name="dimension"
+              value={dim}
+              checked={filters.dimension === dim}
+              onChange={handlefilterchange}
+              className="mr-2"
+            />
+            {dim}
           </label>
         ))}
       </div>

@@ -22,6 +22,7 @@ function Orderdetailspage() {
           price: '499.99',
           quantity: 1,
           color: 'Grey',
+          size: '3-Seater', // <-- added size
           dimension: '200x90x80 cm',
           image: 'https://picsum.photos/150?random=1',
         },
@@ -31,6 +32,7 @@ function Orderdetailspage() {
           price: '199.99',
           quantity: 1,
           color: 'Black',
+          size: 'Standard',
           dimension: '50x50x90 cm',
           image: 'https://picsum.photos/150?random=2',
         },
@@ -40,6 +42,7 @@ function Orderdetailspage() {
           price: '299.99',
           quantity: 1,
           color: 'Brown',
+          size: 'Medium',
           dimension: '120x60x45 cm',
           image: 'https://picsum.photos/150?random=3',
         },
@@ -136,7 +139,7 @@ function Orderdetailspage() {
                   <th className='py-2 px-4'>Unit Price</th>
                   <th className='py-2 px-4'>Quantity</th>
                   <th className='py-2 px-4'>Total</th>
-                  <th className='py-2 px-4'>Color / Dimension</th>
+                  <th className='py-2 px-4'>Color / Size / Dimension</th>
                 </tr>
               </thead>
               <tbody>
@@ -163,7 +166,7 @@ function Orderdetailspage() {
                       ${(parseFloat(item.price) * item.quantity).toLocaleString()}
                     </td>
                     <td className='py-2 px-4'>
-                      {item.color} | {item.dimension}
+                      {item.color} | {item.size} | {item.dimension}
                     </td>
                   </tr>
                 ))}
