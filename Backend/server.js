@@ -8,6 +8,10 @@ const cartroute = require('./routes/Cartroutes')
 const checkoutroute = require('./routes/checkoutroute')
 const orderroute = require('./routes/orderroutes')
 const uploadroute = require('./routes/uploadroutes')
+const subscriberoute = require('./routes/subscriberoute')
+const adminroute = require('./routes/adminroute')
+const productadminroutes = require('./routes/productadminroutes')
+const adminorders = require('./routes/adminorderroute')
 
 
 dotenv.config();  
@@ -26,6 +30,12 @@ app.use('/api/cart',cartroute)
 app.use('/api/checkout',checkoutroute)
 app.use('/api/order',orderroute)
 app.use('/api/upload',uploadroute)
+app.use('/api/subscribe',subscriberoute)
+
+
+app.use('/api/admin/users',adminroute)
+app.use('/api/admin/products',productadminroutes)
+app.use('/api/admin/orders',adminorders)
 
 // Routes placeholder
 app.get('/', (req, res) => {
