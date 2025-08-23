@@ -5,6 +5,9 @@ const connectdb = require("./Config/db")
 const userroute = require('./routes/Userroute')
 const productroute = require('./routes/Productroutes')
 const cartroute = require('./routes/Cartroutes')
+const checkoutroute = require('./routes/checkoutroute')
+const orderroute = require('./routes/orderroutes')
+const uploadroute = require('./routes/uploadroutes')
 
 
 dotenv.config();  
@@ -20,6 +23,9 @@ app.use(express.json());
 app.use("/api/users", userroute);
 app.use("/api/products", productroute);
 app.use('/api/cart',cartroute)
+app.use('/api/checkout',checkoutroute)
+app.use('/api/order',orderroute)
+app.use('/api/upload',uploadroute)
 
 // Routes placeholder
 app.get('/', (req, res) => {

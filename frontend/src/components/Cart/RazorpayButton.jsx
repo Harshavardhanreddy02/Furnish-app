@@ -18,7 +18,7 @@ function RazorpayButton({ amount, onSuccess, onError }) {
 
   const launchRazorpay = () => {
     const options = {
-      key: "rzp_test_R7BRUCypYOHKZv", // ✅ Using .env variable
+      key: "rzp_test_R7BRUCypYOHKZv", 
       amount: amount * 100, // Razorpay expects amount in paise
       currency: "INR",
       name: "UrbanWood Furniture",
