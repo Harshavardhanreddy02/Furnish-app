@@ -10,11 +10,11 @@
     "brand": "UrbanWood",
     "sizes": ["3-Seater", "2-Seater"],
     "colors": ["Brown", "Beige", "Grey"],
-    "collection": "Luxury Collection",
-    "material": "Teak Wood + Fabric",
+    "collections": "livingroom",
+    "material": "Leather",
     "images": [
-      { "url": "https://picsum.photos/seed/sofa1/400", "altText": "Modern Wooden Sofa Front View" },
-      { "url": "https://picsum.photos/seed/sofa2/400", "altText": "Modern Wooden Sofa Side View" }
+      { "url": "https://picsum.photos/500/500?random=4", "altText": "Modern Wooden Sofa Front View" },
+      { "url": "https://picsum.photos/500/500?random=5", "altText": "Modern Wooden Sofa Side View" }
     ],
     "isFeatured": true,
     "isPublished": true,
@@ -35,13 +35,13 @@
     "countInStock": 10,
     "sku": "BED-001",
     "category": "Bed",
-    "brand": "UrbanWood",
+    "brand": "Godrej",
     "sizes": ["King", "Queen"],
     "colors": ["Brown"],
-    "collection": "Classic Collection",
-    "material": "Sheesham Wood",
+    "collections": "Bedroom",
+    "material": "Wood",
     "images": [
-      { "url": "https://picsum.photos/seed/bed1/400", "altText": "King Size Wooden Bed" }
+      { "url": "https://picsum.photos/500/500?random=6", "altText": "King Size Wooden Bed" }
     ],
     "isFeatured": true,
     "isPublished": true,
@@ -62,13 +62,13 @@
     "countInStock": 8,
     "sku": "DINING-001",
     "category": "Dining",
-    "brand": "UrbanWood",
+    "brand": "IKEA",
     "sizes": ["6-Seater"],
     "colors": ["Brown", "White"],
-    "collection": "Luxury Collection",
+    "collections": "Diningroom",
     "material": "Wood + Marble",
     "images": [
-      { "url": "https://picsum.photos/seed/dining1/400", "altText": "Dining Table Set" }
+      { "url": "https://picsum.photos/500/500?random=7", "altText": "Dining Table Set" }
     ],
     "isFeatured": false,
     "isPublished": true,
@@ -89,13 +89,13 @@
     "countInStock": 15,
     "sku": "CHAIR-001",
     "category": "Chair",
-    "brand": "UrbanWood",
+    "brand": "Hometown",
     "sizes": ["Single"],
     "colors": ["Black", "Brown"],
-    "collection": "Comfort Collection",
-    "material": "Leather + Metal",
+    "collections": "Office ",
+    "material": "Plastic",
     "images": [
-      { "url": "https://picsum.photos/seed/chair1/400", "altText": "Recliner Chair" }
+      { "url": "https://picsum.photos/500/500?random=8", "altText": "Recliner Chair" }
     ],
     "isFeatured": true,
     "isPublished": true,
@@ -116,13 +116,13 @@
     "countInStock": 9,
     "sku": "WARDROBE-001",
     "category": "Wardrobe",
-    "brand": "UrbanWood",
+    "brand": "Pepperfry",
     "sizes": ["3-Door"],
     "colors": ["Brown"],
-    "collection": "Storage Collection",
-    "material": "Engineered Wood",
+    "collections": "Wooden",
+    "material": "Metal",
     "images": [
-      { "url": "https://picsum.photos/seed/wardrobe1/400", "altText": "Wooden Wardrobe" }
+      { "url": "https://picsum.photos/500/500?random=9", "altText": "Wooden Wardrobe" }
     ],
     "isFeatured": false,
     "isPublished": true,
@@ -138,19 +138,19 @@
   {
     "name": "Modern Wooden Sofa",
     "description": "A premium 3-seater sofa made with high-quality teak wood and soft fabric cushions.",
-    "price": 25000,
-    "discountPrice": 22000,
+    "price":40000,
+    "discountPrice": 40000,
     "countInStock": 12,
     "sku": "SOFA-002",
     "category": "Sofa",
     "brand": "UrbanWood",
     "sizes": ["3-Seater", "2-Seater"],
     "colors": ["Brown", "Beige", "Grey"],
-    "collection": "Luxury Collection",
-    "material": "Teak Wood + Fabric",
+    "collections": "livingroom",
+    "material": "Leather",
     "images": [
-      { "url": "https://picsum.photos/seed/sofa1/400", "altText": "Modern Wooden Sofa Front View" },
-      { "url": "https://picsum.photos/seed/sofa2/400", "altText": "Modern Wooden Sofa Side View" }
+      { "url": "https://picsum.photos/500/500?random=80", "altText": "Modern Wooden Sofa Front View" },
+      { "url": "https://picsum.photos/500/500?random=102", "altText": "Modern Wooden Sofa Side View" }
     ],
     "isFeatured": true,
     "isPublished": true,
@@ -166,22 +166,23 @@
   {
     "name": "King Size Bed",
     "description": "Spacious king size bed made of solid Sheesham wood with storage drawers.",
-    "price": 32000,
+    "price": 80000,
     "discountPrice": 29000,
     "countInStock": 10,
     "sku": "BED-002",
     "category": "Bed",
-    "brand": "UrbanWood",
+    "brand": "Godrej",
     "sizes": ["King", "Queen"],
     "colors": ["Brown"],
-    "collection": "Classic Collection",
-    "material": "Sheesham Wood",
+    "collections": "Bedroom",
+    "material": "Wood",
     "images": [
-      { "url": "https://picsum.photos/seed/bed1/400", "altText": "King Size Wooden Bed" }
+      { "url": "https://picsum.photos/500/500?random=6", "altText": "King Size Wooden Bed" },
+      { "url": "https://picsum.photos/500/500?random=45", "altText": "Mistake" }
     ],
     "isFeatured": true,
     "isPublished": true,
-    "rating": 4.7,
+    "rating": 9,
     "numReviews": 34,
     "tags": ["bed", "wooden bed", "storage"],
     "metaTitle": "King Size Wooden Bed with Storage",
@@ -198,13 +199,13 @@
     "countInStock": 8,
     "sku": "DINING-002",
     "category": "Dining",
-    "brand": "UrbanWood",
+    "brand": "IKEA",
     "sizes": ["6-Seater"],
     "colors": ["Brown", "White"],
-    "collection": "Luxury Collection",
+    "collections": "Diningroom",
     "material": "Wood + Marble",
     "images": [
-      { "url": "https://picsum.photos/seed/dining1/400", "altText": "Dining Table Set" }
+      { "url": "https://picsum.photos/500/500?random=7", "altText": "Dining Table Set" }
     ],
     "isFeatured": false,
     "isPublished": true,
@@ -225,13 +226,13 @@
     "countInStock": 15,
     "sku": "CHAIR-002",
     "category": "Chair",
-    "brand": "UrbanWood",
+    "brand": "Hometown",
     "sizes": ["Single"],
     "colors": ["Black", "Brown"],
-    "collection": "Comfort Collection",
+    "collections": "Office",
     "material": "Leather + Metal",
     "images": [
-      { "url": "https://picsum.photos/seed/chair1/400", "altText": "Recliner Chair" }
+      { "url": "https://picsum.photos/500/500?random=8", "altText": "Recliner Chair" }
     ],
     "isFeatured": true,
     "isPublished": true,
@@ -255,10 +256,10 @@
     "brand": "UrbanWood",
     "sizes": ["3-Door"],
     "colors": ["Brown"],
-    "collection": "Storage Collection",
-    "material": "Engineered Wood",
+    "collections": " Wooden",
+    "material": "Metal",
     "images": [
-      { "url": "https://picsum.photos/seed/wardrobe1/400", "altText": "Wooden Wardrobe" }
+      { "url": "https://picsum.photos/500/500?random=9", "altText": "Wooden Wardrobe" }
     ],
     "isFeatured": false,
     "isPublished": true,
@@ -274,19 +275,19 @@
   {
     "name": "Modern Wooden Sofa",
     "description": "A premium 3-seater sofa made with high-quality teak wood and soft fabric cushions.",
-    "price": 25000,
-    "discountPrice": 22000,
+    "price": 10000,
+    "discountPrice": 10000,
     "countInStock": 12,
     "sku": "SOFA-003",
     "category": "Sofa",
     "brand": "UrbanWood",
     "sizes": ["3-Seater", "2-Seater"],
     "colors": ["Brown", "Beige", "Grey"],
-    "collection": "Luxury Collection",
-    "material": "Teak Wood + Fabric",
+    "collections": "livingroom",
+    "material": "Leather",
     "images": [
-      { "url": "https://picsum.photos/seed/sofa1/400", "altText": "Modern Wooden Sofa Front View" },
-      { "url": "https://picsum.photos/seed/sofa2/400", "altText": "Modern Wooden Sofa Side View" }
+      { "url": "https://picsum.photos/500/500?random=109", "altText": "Modern Wooden Sofa Front View" },
+      { "url": "https://picsum.photos/500/500?random=110", "altText": "Modern Wooden Sofa Side View" }
     ],
     "isFeatured": true,
     "isPublished": true,
@@ -300,9 +301,9 @@
     "weight": 50
   },
   {
-    "name": "King Size Bed",
+    "name": "Road Side Bed",
     "description": "Spacious king size bed made of solid Sheesham wood with storage drawers.",
-    "price": 32000,
+    "price": 22000,
     "discountPrice": 29000,
     "countInStock": 10,
     "sku": "BED-003",
@@ -310,10 +311,10 @@
     "brand": "UrbanWood",
     "sizes": ["King", "Queen"],
     "colors": ["Brown"],
-    "collection": "Classic Collection",
-    "material": "Sheesham Wood",
+    "collections": "Classic Collection",
+    "material": "Wood",
     "images": [
-      { "url": "https://picsum.photos/seed/bed1/400", "altText": "King Size Wooden Bed" }
+      { "url": "https://picsum.photos/500/500?random=70", "altText": "King Size Wooden Bed" }
     ],
     "isFeatured": true,
     "isPublished": true,
@@ -334,13 +335,13 @@
     "countInStock": 8,
     "sku": "DINING-003",
     "category": "Dining",
-    "brand": "UrbanWood",
+    "brand": "IKEA",
     "sizes": ["6-Seater"],
     "colors": ["Brown", "White"],
-    "collection": "Luxury Collection",
+    "collections": "Diningroom",
     "material": "Wood + Marble",
     "images": [
-      { "url": "https://picsum.photos/seed/dining1/400", "altText": "Dining Table Set" }
+      { "url": "https://picsum.photos/500/500?random=7", "altText": "Dining Table Set" }
     ],
     "isFeatured": false,
     "isPublished": true,
@@ -361,13 +362,13 @@
     "countInStock": 15,
     "sku": "CHAIR-003",
     "category": "Chair",
-    "brand": "UrbanWood",
+    "brand": "Hometown",
     "sizes": ["Single"],
     "colors": ["Black", "Brown"],
-    "collection": "Comfort Collection",
+    "collections": "Office",
     "material": "Leather + Metal",
     "images": [
-      { "url": "https://picsum.photos/seed/chair1/400", "altText": "Recliner Chair" }
+      { "url": "https://picsum.photos/500/500?random=8", "altText": "Recliner Chair" }
     ],
     "isFeatured": true,
     "isPublished": true,
@@ -391,10 +392,10 @@
     "brand": "UrbanWood",
     "sizes": ["3-Door"],
     "colors": ["Brown"],
-    "collection": "Storage Collection",
-    "material": "Engineered Wood",
+    "collections": "Wooden",
+    "material": "Metal",
     "images": [
-      { "url": "https://picsum.photos/seed/wardrobe1/400", "altText": "Wooden Wardrobe" }
+      { "url": "https://picsum.photos/500/500?random=9", "altText": "Wooden Wardrobe" }
     ],
     "isFeatured": false,
     "isPublished": true,
@@ -410,19 +411,19 @@
   {
     "name": "Modern Wooden Sofa",
     "description": "A premium 3-seater sofa made with high-quality teak wood and soft fabric cushions.",
-    "price": 25000,
-    "discountPrice": 22000,
+    "price": 90000,
+    "discountPrice": 90000,
     "countInStock": 12,
     "sku": "SOFA-004",
     "category": "Sofa",
     "brand": "UrbanWood",
     "sizes": ["3-Seater", "2-Seater"],
     "colors": ["Brown", "Beige", "Grey"],
-    "collection": "Luxury Collection",
-    "material": "Teak Wood + Fabric",
+    "collections": "livingroom",
+    "material": "Leather",
     "images": [
-      { "url": "https://picsum.photos/seed/sofa1/400", "altText": "Modern Wooden Sofa Front View" },
-      { "url": "https://picsum.photos/seed/sofa2/400", "altText": "Modern Wooden Sofa Side View" }
+      { "url": "https://picsum.photos/500/500?random=167", "altText": "Modern Wooden Sofa Front View" },
+      { "url": "https://picsum.photos/500/500?random=68", "altText": "Modern Wooden Sofa Side View" }
     ],
     "isFeatured": true,
     "isPublished": true,
@@ -436,9 +437,9 @@
     "weight": 50
   },
   {
-    "name": "King Size Bed",
+    "name": "Country side bed",
     "description": "Spacious king size bed made of solid Sheesham wood with storage drawers.",
-    "price": 32000,
+    "price": 40000,
     "discountPrice": 29000,
     "countInStock": 10,
     "sku": "BED-004",
@@ -446,10 +447,10 @@
     "brand": "UrbanWood",
     "sizes": ["King", "Queen"],
     "colors": ["Brown"],
-    "collection": "Classic Collection",
-    "material": "Sheesham Wood",
+    "collections": "Classic Collection",
+    "material": "Wood",
     "images": [
-      { "url": "https://picsum.photos/seed/bed1/400", "altText": "King Size Wooden Bed" }
+      { "url": "https://picsum.photos/500/500?random=40", "altText": "King Size Wooden Bed" }
     ],
     "isFeatured": true,
     "isPublished": true,
@@ -470,13 +471,13 @@
     "countInStock": 8,
     "sku": "DINING-004",
     "category": "Dining",
-    "brand": "UrbanWood",
+    "brand": "IKEA",
     "sizes": ["6-Seater"],
     "colors": ["Brown", "White"],
-    "collection": "Luxury Collection",
+    "collections": "Diningroom",
     "material": "Wood + Marble",
     "images": [
-      { "url": "https://picsum.photos/seed/dining1/400", "altText": "Dining Table Set" }
+      { "url": "https://picsum.photos/500/500?random=7", "altText": "Dining Table Set" }
     ],
     "isFeatured": false,
     "isPublished": true,
@@ -497,13 +498,13 @@
     "countInStock": 15,
     "sku": "CHAIR-004",
     "category": "Chair",
-    "brand": "UrbanWood",
+    "brand": "Hometown",
     "sizes": ["Single"],
     "colors": ["Black", "Brown"],
-    "collection": "Comfort Collection",
+    "collections": "Office",
     "material": "Leather + Metal",
     "images": [
-      { "url": "https://picsum.photos/seed/chair1/400", "altText": "Recliner Chair" }
+      { "url": "https://picsum.photos/500/500?random=8", "altText": "Recliner Chair" }
     ],
     "isFeatured": true,
     "isPublished": true,
@@ -527,10 +528,10 @@
     "brand": "UrbanWood",
     "sizes": ["3-Door"],
     "colors": ["Brown"],
-    "collection": "Storage Collection",
-    "material": "Engineered Wood",
+    "collections": "Wooden",
+    "material": "Metal",
     "images": [
-      { "url": "https://picsum.photos/seed/wardrobe1/400", "altText": "Wooden Wardrobe" }
+      { "url": "https://picsum.photos/500/500?random=9", "altText": "Wooden Wardrobe" }
     ],
     "isFeatured": false,
     "isPublished": true,
@@ -546,19 +547,19 @@
   {
     "name": "Modern Wooden Sofa",
     "description": "A premium 3-seater sofa made with high-quality teak wood and soft fabric cushions.",
-    "price": 25000,
-    "discountPrice": 22000,
+    "price": 80000,
+    "discountPrice": 80000,
     "countInStock": 12,
     "sku": "SOFA-005",
     "category": "Sofa",
     "brand": "UrbanWood",
     "sizes": ["3-Seater", "2-Seater"],
     "colors": ["Brown", "Beige", "Grey"],
-    "collection": "Luxury Collection",
-    "material": "Teak Wood + Fabric",
+    "collections": "livingroom",
+    "material": "Leather",
     "images": [
-      { "url": "https://picsum.photos/seed/sofa1/400", "altText": "Modern Wooden Sofa Front View" },
-      { "url": "https://picsum.photos/seed/sofa2/400", "altText": "Modern Wooden Sofa Side View" }
+      { "url": "https://picsum.photos/500/500?random=45", "altText": "Modern Wooden Sofa Front View" },
+      { "url": "https://picsum.photos/500/500?random=36", "altText": "Modern Wooden Sofa Side View" }
     ],
     "isFeatured": true,
     "isPublished": true,
@@ -572,9 +573,9 @@
     "weight": 50
   },
   {
-    "name": "King Size Bed",
+    "name": "coridor bed",
     "description": "Spacious king size bed made of solid Sheesham wood with storage drawers.",
-    "price": 32000,
+    "price": 30000,
     "discountPrice": 29000,
     "countInStock": 10,
     "sku": "BED-005",
@@ -582,10 +583,10 @@
     "brand": "UrbanWood",
     "sizes": ["King", "Queen"],
     "colors": ["Brown"],
-    "collection": "Classic Collection",
-    "material": "Sheesham Wood",
+    "collections": "Classic Collection",
+    "material": "Wood",
     "images": [
-      { "url": "https://picsum.photos/seed/bed1/400", "altText": "King Size Wooden Bed" }
+      { "url": "https://picsum.photos/500/500?random=100", "altText": "King Size Wooden Bed" }
     ],
     "isFeatured": true,
     "isPublished": true,
@@ -606,13 +607,13 @@
     "countInStock": 8,
     "sku": "DINING-005",
     "category": "Dining",
-    "brand": "UrbanWood",
+    "brand": "IKEA",
     "sizes": ["6-Seater"],
     "colors": ["Brown", "White"],
-    "collection": "Luxury Collection",
+    "collections": "Diningroom",
     "material": "Wood + Marble",
     "images": [
-      { "url": "https://picsum.photos/seed/dining1/400", "altText": "Dining Table Set" }
+      { "url": "https://picsum.photos/500/500?random=7", "altText": "Dining Table Set" }
     ],
     "isFeatured": false,
     "isPublished": true,
@@ -633,13 +634,13 @@
     "countInStock": 15,
     "sku": "CHAIR-005",
     "category": "Chair",
-    "brand": "UrbanWood",
+    "brand": "Hometown",
     "sizes": ["Single"],
     "colors": ["Black", "Brown"],
-    "collection": "Comfort Collection",
+    "collections": "Office",
     "material": "Leather + Metal",
     "images": [
-      { "url": "https://picsum.photos/seed/chair1/400", "altText": "Recliner Chair" }
+      { "url": "https://picsum.photos/500/500?random=8", "altText": "Recliner Chair" }
     ],
     "isFeatured": true,
     "isPublished": true,
@@ -663,10 +664,10 @@
     "brand": "UrbanWood",
     "sizes": ["3-Door"],
     "colors": ["Brown"],
-    "collection": "Storage Collection",
-    "material": "Engineered Wood",
+    "collections": "Wooden ",
+    "material": "Metal",
     "images": [
-      { "url": "https://picsum.photos/seed/wardrobe1/400", "altText": "Wooden Wardrobe" }
+      { "url": "https://picsum.photos/500/500?random=9", "altText": "Wooden Wardrobe" }
     ],
     "isFeatured": false,
     "isPublished": true,
@@ -682,19 +683,19 @@
   {
     "name": "Modern Wooden Sofa",
     "description": "A premium 3-seater sofa made with high-quality teak wood and soft fabric cushions.",
-    "price": 25000,
-    "discountPrice": 22000,
+    "price": 62000,
+    "discountPrice": 62000,
     "countInStock": 12,
     "sku": "SOFA-006",
     "category": "Sofa",
     "brand": "UrbanWood",
     "sizes": ["3-Seater", "2-Seater"],
     "colors": ["Brown", "Beige", "Grey"],
-    "collection": "Luxury Collection",
-    "material": "Teak Wood + Fabric",
+    "collections": "livingroom",
+    "material": "Leather",
     "images": [
-      { "url": "https://picsum.photos/seed/sofa1/400", "altText": "Modern Wooden Sofa Front View" },
-      { "url": "https://picsum.photos/seed/sofa2/400", "altText": "Modern Wooden Sofa Side View" }
+      { "url": "https://picsum.photos/500/500?random=56", "altText": "Modern Wooden Sofa Front View" },
+      { "url": "https://picsum.photos/500/500?random=57", "altText": "Modern Wooden Sofa Side View" }
     ],
     "isFeatured": true,
     "isPublished": true,
@@ -708,9 +709,9 @@
     "weight": 50
   },
   {
-    "name": "King Size Bed",
+    "name": "delivery bed",
     "description": "Spacious king size bed made of solid Sheesham wood with storage drawers.",
-    "price": 32000,
+    "price": 38000,
     "discountPrice": 29000,
     "countInStock": 10,
     "sku": "BED-006",
@@ -718,10 +719,10 @@
     "brand": "UrbanWood",
     "sizes": ["King", "Queen"],
     "colors": ["Brown"],
-    "collection": "Classic Collection",
-    "material": "Sheesham Wood",
+    "collections": "Classic Collection",
+    "material": "Wood",
     "images": [
-      { "url": "https://picsum.photos/seed/bed1/400", "altText": "King Size Wooden Bed" }
+      { "url": "https://picsum.photos/500/500?random=48", "altText": "King Size Wooden Bed" }
     ],
     "isFeatured": true,
     "isPublished": true,
@@ -742,13 +743,13 @@
     "countInStock": 8,
     "sku": "DINING-006",
     "category": "Dining",
-    "brand": "UrbanWood",
+    "brand": "IKEA",
     "sizes": ["6-Seater"],
     "colors": ["Brown", "White"],
-    "collection": "Luxury Collection",
+    "collections": "Diningroom",
     "material": "Wood + Marble",
     "images": [
-      { "url": "https://picsum.photos/seed/dining1/400", "altText": "Dining Table Set" }
+      { "url": "https://picsum.photos/500/500?random=7", "altText": "Dining Table Set" }
     ],
     "isFeatured": false,
     "isPublished": true,
@@ -769,13 +770,13 @@
     "countInStock": 15,
     "sku": "CHAIR-006",
     "category": "Chair",
-    "brand": "UrbanWood",
+    "brand": "Hometown",
     "sizes": ["Single"],
     "colors": ["Black", "Brown"],
-    "collection": "Comfort Collection",
+    "collections": "Office",
     "material": "Leather + Metal",
     "images": [
-      { "url": "https://picsum.photos/seed/chair1/400", "altText": "Recliner Chair" }
+      { "url": "https://picsum.photos/500/500?random=8", "altText": "Recliner Chair" }
     ],
     "isFeatured": true,
     "isPublished": true,
@@ -799,10 +800,10 @@
     "brand": "UrbanWood",
     "sizes": ["3-Door"],
     "colors": ["Brown"],
-    "collection": "Storage Collection",
-    "material": "Engineered Wood",
+    "collections": "Wooden ",
+    "material": "Metal",
     "images": [
-      { "url": "https://picsum.photos/seed/wardrobe1/400", "altText": "Wooden Wardrobe" }
+      { "url": "https://picsum.photos/500/500?random=9", "altText": "Wooden Wardrobe" }
     ],
     "isFeatured": false,
     "isPublished": true,
@@ -818,7 +819,7 @@
    {
     "name": "Modern Fabric Sofa",
     "description": "Stylish 3-seater sofa with soft linen fabric and sturdy wooden frame.",
-    "price": 27000,
+    "price": 24000,
     "discountPrice": 24000,
     "countInStock": 8,
     "sku": "SOFA-012",
@@ -826,11 +827,11 @@
     "brand": "UrbanWood",
     "sizes": ["3-Seater"],
     "colors": ["Blue", "Grey"],
-    "collection": "Modern Collection",
+    "collections": "Modern Collection",
     "material": "Wood + Linen Fabric",
     "images": [
-      { "url": "https://picsum.photos/seed/sofa10/400", "altText": "Fabric Sofa Front View" },
-      { "url": "https://picsum.photos/seed/sofa11/400", "altText": "Fabric Sofa Side View" }
+      { "url": "https://picsum.photos/500/500?random=10", "altText": "Fabric Sofa Front View" },
+      { "url": "https://picsum.photos/500/500?random=11", "altText": "Fabric Sofa Side View" }
     ],
     "isFeatured": false,
     "isPublished": true,
@@ -854,10 +855,10 @@
     "brand": "UrbanWood",
     "sizes": ["Queen"],
     "colors": ["Walnut Brown"],
-    "collection": "Classic Collection",
-    "material": "Sheesham Wood",
+    "collections": "Classic Collection",
+    "material": "Wood",
     "images": [
-      { "url": "https://picsum.photos/seed/bed10/400", "altText": "Queen Size Wooden Bed" }
+      { "url": "https://picsum.photos/500/500?random=6", "altText": "Queen Size Wooden Bed" }
     ],
     "isFeatured": true,
     "isPublished": true,
@@ -881,10 +882,10 @@
     "brand": "UrbanWood",
     "sizes": ["4-Seater"],
     "colors": ["Brown", "Cream"],
-    "collection": "Luxury Collection",
+    "collections": "Diningroom",
     "material": "Wood + Glass",
     "images": [
-      { "url": "https://picsum.photos/seed/dining10/400", "altText": "Dining Table Set with Glass Top" }
+      { "url": "https://picsum.photos/500/500?random=7", "altText": "Dining Table Set with Glass Top" }
     ],
     "isFeatured": true,
     "isPublished": true,
@@ -908,10 +909,10 @@
     "brand": "UrbanWood",
     "sizes": ["Single"],
     "colors": ["Grey", "Blue"],
-    "collection": "Comfort Collection",
+    "collections": "Office",
     "material": "Fabric + Metal",
     "images": [
-      { "url": "https://picsum.photos/seed/chair10/400", "altText": "Premium Recliner Chair" }
+      { "url": "https://picsum.photos/500/500?random=8", "altText": "Premium Recliner Chair" }
     ],
     "isFeatured": false,
     "isPublished": true,
@@ -935,10 +936,10 @@
     "brand": "UrbanWood",
     "sizes": ["2-Door"],
     "colors": ["Dark Brown"],
-    "collection": "Storage Collection",
-    "material": "Engineered Wood",
+    "collections": "Storage Collection",
+    "material": "Metal",
     "images": [
-      { "url": "https://picsum.photos/seed/wardrobe10/400", "altText": "Sliding Door Wardrobe" }
+      { "url": "https://picsum.photos/500/500?random=9", "altText": "Sliding Door Wardrobe" }
     ],
     "isFeatured": true,
     "isPublished": true,

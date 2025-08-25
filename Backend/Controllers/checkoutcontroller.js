@@ -97,14 +97,4 @@ const paymentcheckout = async (req, res) => {
     res.status(500).json({ message: "Server error" })
   }
 }
-
 module.exports = { createcheckout, updatecheckout, paymentcheckout }
-
-
-
-
-
-
-
-module.exports = {createcheckout,updatecheckout,paymentcheckout}
-

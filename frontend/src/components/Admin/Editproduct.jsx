@@ -11,7 +11,7 @@ function EditProduct() {
     brand: '',
     sizes: [], // e.g., "Small, Medium, Large" for sofas or beds
     colors: [], // e.g., "Red, Blue, Brown"
-    collection: '',
+    collections: '',
     material: '', // e.g., "Wood, Leather"
     dimension: '', // ✅ Added field
     images: [
@@ -176,8 +176,8 @@ function EditProduct() {
           <label className="block font-semibold mb-2">Collection</label>
           <input
             type="text"
-            name="collection"
-            value={productData.collection}
+            name="collections"
+            value={productData.collections}
             onChange={handleChange}
             className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="E.g., Modern, Classic"

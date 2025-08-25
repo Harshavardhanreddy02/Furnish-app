@@ -7,11 +7,11 @@ function Filtersidebar() {
 
   const [filters, setfilters] = useState({
     category: "",
-    room: "",
-    color: "",
+    // room: "",
+    colors: "",
     material: [],
     brand: [],
-    dimension: "", // added dimension filter
+    dimensions: "", // added dimension filter
     minprice: 0,
     maxprice: 100000,
   });
@@ -19,7 +19,7 @@ function Filtersidebar() {
   const [pricerange, setpricerange] = useState([0, 100000]);
 
   const category = ["Sofa", "Bed", "Chair", "Table", "Wardrobe"];
-  const rooms = ["Living Room", "Bedroom", "Dining Room", "Office"];
+  // const rooms = ["Living Room", "Bedroom", "Dining Room", "Office"];
   const colors = ["Brown", "Black", "White", "Gray", "Beige"];
   const materials = ["Wood", "Metal", "Plastic", "Glass", "Leather"];
   const brands = ["UrbanWood", "Godrej", "IKEA", "HomeTown", "Pepperfry"];
@@ -30,11 +30,11 @@ function Filtersidebar() {
     const params = Object.fromEntries([...searchparams]);
     setfilters({
       category: params.category || "",
-      room: params.room || "",
-      color: params.color || "",
+      // room: params.room || "",
+      colors: params.colors || "",
       material: params.material ? params.material.split(",") : [],
       brand: params.brand ? params.brand.split(",") : [],
-      dimension: params.dimension || "",
+      dimensions: params.dimensions || "",
       minprice: parseInt(params.minprice) || 0,
       maxprice: parseInt(params.maxprice) || 100000,
     });
@@ -116,7 +116,7 @@ function Filtersidebar() {
       </div>
 
       {/* Room Filter */}
-      <div className="mb-4">
+      {/* <div className="mb-4">
         <h3 className="font-semibold">Room</h3>
         {rooms.map((room) => (
           <label key={room} className="block">
@@ -131,7 +131,7 @@ function Filtersidebar() {
             {room}
           </label>
         ))}
-      </div>
+      </div> */}
 
       {/* Dimension/Size Filter */}
       <div className="mb-4">
@@ -140,9 +140,9 @@ function Filtersidebar() {
           <label key={dim} className="block">
             <input
               type="radio"
-              name="dimension"
+              name="dimensions"
               value={dim}
-              checked={filters.dimension === dim}
+              checked={filters.dimensions === dim}
               onChange={handlefilterchange}
               className="mr-2"
             />
@@ -158,9 +158,9 @@ function Filtersidebar() {
           <label key={color} className="flex items-center space-x-2 mb-1">
             <input
               type="radio"
-              name="color"
+              name="colors"
               value={color}
-              checked={filters.color === color}
+              checked={filters.colors === color}
               onChange={handlefilterchange}
               className="mr-2"
             />

@@ -4,14 +4,14 @@ const createproduct = async (req, res) => {
   try {
     const {
       name, description, price, discountPrice, countInStock, sku,
-      category, brand, sizes, colors, collection, material, images,
+      category, brand, sizes, colors, collections, material, images,
       isFeatured, isPublished, rating, numReviews, tags,
       metaTitle, metaDescription, metaKeywords, dimensions
     } = req.body;
 
     const product = new Product({
       name, description, price, discountPrice, countInStock, sku,
-      category, brand, sizes, colors, collection, material, images,
+      category, brand, sizes, colors, collections, material, images,
       isFeatured, isPublished, rating, numReviews, tags,
       metaTitle, metaDescription, metaKeywords, dimensions,
       user: req.user._id
@@ -29,7 +29,7 @@ const updateproduct = async (req, res) => {
   try {
     const {
       name, description, price, discountPrice, countInStock, sku,
-      category, brand, sizes, colors, collection, material, images,
+      category, brand, sizes, colors, collections, material, images,
       isFeatured, isPublished, rating, numReviews, tags,
       metaTitle, metaDescription, metaKeywords, dimensions
     } = req.body;
@@ -47,7 +47,7 @@ const updateproduct = async (req, res) => {
     product.brand = brand || product.brand;
     product.sizes = sizes || product.sizes;
     product.colors = colors || product.colors;
-    product.collection = collection || product.collection;
+    product.collections = collections || product.collections;
     product.material = material || product.material;
     product.images = images || product.images;
     product.isFeatured = isFeatured !== undefined ? isFeatured : product.isFeatured;
@@ -84,19 +84,20 @@ const deleteproduct = async (req, res) => {
 const getproducts = async (req, res) => {
   try {
     const {
-      collections, color, minprice, maxprice, sortby, search,
+      collections, colors, sizes, minprice, maxprice, sortby, search,
       category, material, brand, room, limit
     } = req.query;
 
     let query = {};
     let sort = {};
 
-    if (collections && collections.toLowerCase() !== "all") query.collection = collections;
+    if (collections && collections.toLowerCase() !== "all") query.collections = collections;
     if (category && category.toLowerCase() !== "all") query.category = category;
     if (brand) query.brand = { $in: brand.split(",") };
     if (material) query.material = { $in: material.split(",") };
     if (room && room.toLowerCase() !== "all") query.room = room;
-    if (color) query.colors = { $in: color.split(",") };
+    if (colors) query.colors = { $in: colors.split(",") };
+    if (sizes) query.sizes = { $in: sizes.split(",") };
 
     if (minprice || maxprice) {
       query.price = {};
@@ -105,9 +106,12 @@ const getproducts = async (req, res) => {
     }
 
     if (search) {
+      const regex = new RegExp(search, "i");
       query.$or = [
-        { name: { $regex: search, $options: "i" } },
-        { description: { $regex: search, $options: "i" } },
+        { name: { $regex: regex } },
+        { brand: { $regex: regex } },
+        { colors: { $in: [regex] } },
+        { sizes: { $in: [regex] } },
       ];
     }
 
@@ -143,18 +147,21 @@ const getproducts = async (req, res) => {
   }
 };
 
-const getproduct = async (req,res) =>
-{
-  try{
-    const product = await Product.findById(req.params.id);
-    if (!product) return res.status(404).json({ message: "Product not found" });
-    res.json(product);
-  }catch(err)
-  {
-    console.error(err);
-    res.status(500).send('server error');
+const getproduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findById(id);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+    return res.status(200).json(product);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server Error" });
   }
-}
+};
+
+
 
 const getsimilarproduct = async (req,res) =>
 {
@@ -177,14 +184,7 @@ const getsimilarproduct = async (req,res) =>
     }
 }
 
-module.exports = {
-  createproduct,
-  updateproduct,
-  deleteproduct,
-  getproducts,
-  getproduct,
-  getsimilarproduct
-}
+
 
 const getbestproduct  = async (req,res) =>
 {
@@ -210,7 +210,7 @@ const getbestproduct  = async (req,res) =>
 const latestuploadedproduct = async (req,res) =>
 {
   try{
-    const newarrivals =   await Product.find().sort({created:-1}).limit(8)
+    const newarrivals =   await Product.find().sort({createdAt:-1}).limit(8)
     res.json(newarrivals)
   }catch(err)
   {

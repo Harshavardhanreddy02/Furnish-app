@@ -5,7 +5,7 @@ const checkoutProductSchema = new mongoose.Schema(
   {
     productid: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
     name: { type: String, required: true },
-    image: { type: String, required: true },
+    images: { type: String, required: true },
     price: { type: Number, required: true },
     quantity: { type: Number, required: true }
   },

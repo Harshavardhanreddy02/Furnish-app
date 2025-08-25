@@ -18,9 +18,9 @@ router.get("/best-seller",getbestproduct)
 
 router.get('/new-arrivals',latestuploadedproduct)
 
-router.get("/:id",getproduct)
-
 router.get("/similar/:id",getsimilarproduct)
+
+router.get("/:id",getproduct)
 
 
 module.exports = router

@@ -2,20 +2,24 @@ import React from 'react'
 import {useState} from 'react'
 import { Link } from 'react-router-dom';
 import signup from '../images/signup.jpg';
+import { registeruser } from '../redux/Slices/authSlice';
+import {useDispatch} from 'react-redux'
 
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setname] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
+  const dispatch = useDispatch()
   
   const handlesubmit= (e) =>
   {
      e.preventDefault();
-     if (password !== confirmPassword) {
-       alert("Passwords do not match");
-       return;
-     }
+    //  if (password !== confirmPassword) {
+    //    alert("Passwords do not match");
+    //    return;
+    //  }
+    dispatch(registeruser({name,email,password}))
      
   }
   return (
@@ -50,8 +54,8 @@ function Register() {
             <label className="block text-sm font-semibold mb-2 text-gray-700">Username</label>
             <input
               type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={name}
+              onChange={(e) => setname(e.target.value)}
               className="border border-gray-300 p-3 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your username"
               required
@@ -72,7 +76,7 @@ function Register() {
             />
           </div>
 
-           <div className="mb-2">
+           {/* <div className="mb-2">
             <label className="block text-sm font-semibold mb-2 text-gray-700">Confirm Password</label>
             <input
               type="password"
@@ -82,7 +86,7 @@ function Register() {
               placeholder="Confirm your password"
               required
             />
-          </div>
+          </div> */}
 
           {/* Forgot Password */}
 

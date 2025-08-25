@@ -7,16 +7,16 @@ const CartitemSchema = new mongoose.Schema({
           required: true,
      },
      name: String,
-     image: String,
+     images: String,
      price: String,
-     size: String,
-     color: String,
+     sizes: String,
+     colors: String,
      quantity: {
           type: Number,
           required: true,
           default: 1
      },
-     dimension: {
+     dimensions: {
           length: Number,
           width: Number,
           height: Number

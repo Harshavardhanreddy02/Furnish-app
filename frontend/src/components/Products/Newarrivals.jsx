@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
@@ -10,16 +11,24 @@ function Newarrivals() {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
-  const newArrivals = [
-    { _id: 1, name: 'New Arrival 1', price: 120, image: { url: 'https://picsum.photos/500/500?random=1', altText: 'New Arrival 1' } },
-    { _id: 2, name: 'New Arrival 2', price: 150, image: { url: 'https://picsum.photos/500/500?random=2', altText: 'New Arrival 2' } },
-    { _id: 3, name: 'New Arrival 3', price: 180, image: { url: 'https://picsum.photos/500/500?random=3', altText: 'New Arrival 3' } },
-    { _id: 4, name: 'New Arrival 4', price: 120, image: { url: 'https://picsum.photos/500/500?random=4', altText: 'New Arrival 4' } },
-    { _id: 5, name: 'New Arrival 5', price: 120, image: { url: 'https://picsum.photos/500/500?random=5', altText: 'New Arrival 5' } },
-    { _id: 6, name: 'New Arrival 6', price: 120, image: { url: 'https://picsum.photos/500/500?random=6', altText: 'New Arrival 6' } },
-    { _id: 7, name: 'New Arrival 7', price: 120, image: { url: 'https://picsum.photos/500/500?random=7', altText: 'New Arrival 7' } },
-    { _id: 8, name: 'New Arrival 8', price: 120, image: { url: 'https://picsum.photos/500/500?random=8', altText: 'New Arrival 8' } },
-  ];
+  const [newArrivals,setnewArrivals] = useState([])
+
+  useEffect(()=>
+  {
+    const fetchnewarrivals = async () =>
+    {
+      try{
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/products/new-arrivals`)
+        setnewArrivals(response.data)
+      }catch(error)
+      { 
+        console.log(error)
+
+      }
+    }
+    fetchnewarrivals()
+  },[])
+
 
   useEffect(() => {
     const container = scrollRef.current;
@@ -27,7 +36,7 @@ function Newarrivals() {
       container.addEventListener('scroll', updateScrollButtons);
     }
     return () => container?.removeEventListener('scroll', updateScrollButtons);
-  }, []);
+  }, [newArrivals]);
 
   const scroll = (direction) => {
     const amount = direction === 'left' ? -300 : 300;
@@ -93,8 +102,8 @@ function Newarrivals() {
         {newArrivals.map((product) => (
           <div key={product._id} className="min-w-[100%] sm:min-w-[50%] lg:min-w-[30%] relative bg-white shadow-lg rounded-lg overflow-hidden">
             <img
-              src={product.image.url}
-              alt={product.image.altText || product.name}
+              src={product.images[0].url}
+              alt={product.images[0].altText || product.name}
               className="w-full h-[400px] object-cover"
               draggable="false"
             />

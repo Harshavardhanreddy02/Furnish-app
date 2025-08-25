@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 function SortOption() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [selectedSort, setSelectedSort] = useState('');
+
+  useEffect(() => {
+    setSelectedSort(searchParams.get('sortby') || '');
+  }, [searchParams]);
 
   const handleSortChange = (e) => {
-    const sort = e.target.value;
+    const sortby = e.target.value;
+    setSelectedSort(sortby);
 
-    if (sort) {
-      searchParams.set("sort", sort);
+    const nextParams = new URLSearchParams(searchParams);
+    if (sortby) {
+      nextParams.set('sortby', sortby);
     } else {
-      searchParams.delete("sort");
+      nextParams.delete('sortby');
     }
-
-    setSearchParams(searchParams);
+    setSearchParams(nextParams);
   };
 
   return (
@@ -23,7 +29,7 @@ function SortOption() {
       </label>
       <select
         id="sort"
-        value={searchParams.get("sort") || ""}
+        value={selectedSort}
         onChange={handleSortChange}
         className="border border-gray-300 px-4 py-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
       >

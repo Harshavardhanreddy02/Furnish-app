@@ -16,7 +16,7 @@ function FeatureCollection() {
           <p className='text-lg text-gray-600 mb-6'>
             Discover the perfect blend of comfort and style with our latest furniture collection.
           </p>
-          <Link to="/collection/all" className='bg-black text-white py-3 px-6 rounded-lg text-lg hover:bg-gray-800'>
+          <Link to="/collections/all" className='bg-black text-white py-3 px-6 rounded-lg text-lg hover:bg-gray-800'>
             Shop Now
           </Link>
         </div>
