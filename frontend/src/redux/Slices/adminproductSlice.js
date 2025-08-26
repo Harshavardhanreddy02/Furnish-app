@@ -2,53 +2,75 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
 
 const API_URL = `${import.meta.env.VITE_BACKEND_URL}`
-const USER_TOKEN = `Bearer ${localStorage.getItem('usertoken')}`
+
+const getAuthHeaders = () => {
+     const token = localStorage.getItem('usertoken')
+     return token ? { Authorization: `Bearer ${token}` } : {}
+}
 
 export const fetchadminproducts = createAsyncThunk(
      'adminproducts/fetchproducts',
-     async () => {
-          const response = await axios.get(`${API_URL}/api/admin/products`, {
-               headers: {
-                    Authorization: USER_TOKEN,
-               },
-          })
-          return response.data
+     async (_, { rejectWithValue }) => {
+          try {
+               const response = await axios.get(`${API_URL}/api/admin/products`, {
+                    headers: {
+                         ...getAuthHeaders(),
+                    },
+               })
+               return response.data
+          } catch (error) {
+               return rejectWithValue(error.response?.data?.message || error.message || 'Failed to fetch admin products')
+          }
      }
 )
 
 export const createproduct = createAsyncThunk(
      'adminproducts/createproduct',
-     async (productdata) => {
-          const response = await axios.post(`${API_URL}/api/admin/products`, productdata, {
-               headers: {
-                    Authorization: USER_TOKEN,
-               }
-          })
-          return response.data
+     async (productdata, { rejectWithValue }) => {
+          try {
+               const response = await axios.post(`${API_URL}/api/admin/products`, productdata, {
+                    headers: {
+                         'Content-Type': 'application/json',
+                         ...getAuthHeaders(),
+                    }
+               })
+               return response.data
+          } catch (error) {
+               return rejectWithValue(error.response?.data?.message || error.message || 'Failed to create product')
+          }
      }
 )
 
 export const updateproduct = createAsyncThunk(
      'adminproducts/updateproduct',
-     async ({ id, productdata }) => {
-          const response = await axios.put(`${API_URL}/api/admin/products/${id}`, productdata, {
-               headers: {
-                    Authorization: USER_TOKEN,
-               }
-          })
-          return response.data
+     async ({ id, productdata }, { rejectWithValue }) => {
+          try {
+               const response = await axios.put(`${API_URL}/api/admin/products/${id}`, productdata, {
+                    headers: {
+                         'Content-Type': 'application/json',
+                         ...getAuthHeaders(),
+                    }
+               })
+               return response.data
+          } catch (error) {
+               return rejectWithValue(error.response?.data?.message || error.message || 'Failed to update product')
+          }
      }
 )
 
 export const deleteproduct = createAsyncThunk(
      'adminproducts/deleteproduct',
-     async (id) => {
-          await axios.delete(`${API_URL}/api/products/${id}`, {
-               headers: {
-                    Authorization: USER_TOKEN,
-               }
-          })
-          return id
+     async (id, { rejectWithValue }) => {
+          try {
+               await axios.delete(`${API_URL}/api/admin/products/${id}`, {
+                    headers: {
+                         ...getAuthHeaders(),
+                    }
+               })
+               return id
+          } catch (error) {
+               return rejectWithValue(error.response?.data?.message || error.message || 'Failed to delete product')
+          }
      }
 )
 
@@ -64,6 +86,7 @@ const adminproducstSlice = createSlice({
           builder
                .addCase(fetchadminproducts.pending, (state) => {
                     state.loading = true
+                    state.error = null
                })
                .addCase(fetchadminproducts.fulfilled, (state, action) => {
                     state.loading = false
@@ -71,7 +94,7 @@ const adminproducstSlice = createSlice({
                })
                .addCase(fetchadminproducts.rejected, (state, action) => {
                     state.loading = false
-                    state.error = action.error.message
+                    state.error = action.payload || action.error.message
                })
                .addCase(createproduct.fulfilled, (state, action) => {
                     state.products.push(action.payload)

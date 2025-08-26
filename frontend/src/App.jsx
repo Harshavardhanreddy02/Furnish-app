@@ -20,6 +20,9 @@ import Productmanagement from './components/Admin/Productmanagement'
 import Editproduct from './components/Admin/Editproduct'
 import Ordermanagement from './components/Admin/Ordermanagement'
 import Protectedroute from './components/CommonPages/Protectedroute'
+import About from './pages/About'
+import FAQs from './pages/FAQs'
+import Features from './pages/Features'
 
 function App() {
   return (
@@ -38,6 +41,9 @@ function App() {
           <Route path="order-confirmation" element={<Orderconfirmationpage />} />
           <Route path="order/:id" element={<Orderdetailspage />} />
           <Route path="my-orders" element={<Myorder />} />
+          <Route path="about" element={<About />} />
+          <Route path="faqs" element={<FAQs />} />
+          <Route path="features" element={<Features />} />
         </Route>
 
         {/* Admin Layout */}

@@ -16,7 +16,7 @@ function Hero() {
                <p className='text-sm tracking-tighter md:text-lg mb-6'>
                     Discover the latest trends in furniture and home decor.
                </p>
-               <Link to="#" className='bg-white text-gray-950 py-2 px-6 rounded-sm text-lg inline-block'>
+               <Link to="/collections/all" className='bg-white text-gray-950 py-2 px-6 rounded-sm text-lg inline-block'>
                     Shop Now
                </Link>
           </div>

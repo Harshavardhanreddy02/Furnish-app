@@ -25,13 +25,20 @@ function Productdetails({ productid, product }) {
 
   const thumbRef = useRef(null);
 
+  // Fetch product details only when product is not provided via props
   useEffect(() => {
     if (!product && productfetchid) {
-      // fetch only if product not directly passed
       dispatch(fetchproductdetails(productfetchid));
-      dispatch(fetchsimilarproducts({ id: productfetchid }));
     }
   }, [dispatch, productfetchid, product]);
+
+  // Always fetch similar products based on the effective product id (works on homepage too)
+  useEffect(() => {
+    const effectiveId = productData?._id || productfetchid;
+    if (effectiveId) {
+      dispatch(fetchsimilarproducts({ id: effectiveId }));
+    }
+  }, [dispatch, productData?._id, productfetchid]);
 
   useEffect(() => {
     if (productData?.images?.length > 0) {
