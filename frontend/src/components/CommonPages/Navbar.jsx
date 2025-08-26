@@ -56,9 +56,10 @@ function Navbar() {
         {/* Right-side Actions */}
         <div className='flex items-center space-x-4'>
           {/* Admin Link */}
-          <Link to='/admin' className='block bg-black px-2 rounded text-sm text-white hover:bg-gray-900'>
+          {user && user.role === 'admin' && (<Link to='/admin' className='block bg-black px-2 rounded text-sm text-white hover:bg-gray-900'>
             admin
-          </Link>
+          </Link>)}
+          
 
           {/* User Profile */}
           <Link to='/profile' className='hover:text-black'>

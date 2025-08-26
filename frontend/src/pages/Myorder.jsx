@@ -1,85 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { fetchuserorders } from '../redux/Slices/orderSlice';
 
 function Myorder() {
-  const [orders, setorders] = useState([]);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { orders, loading, error } = useSelector((state) => state.orders);
 
   useEffect(() => {
-    setTimeout(() => {
-      const mockorder = [
-        {
-          _id: '123',
-          createdAt: new Date(),
-          shippingaddress: { city: 'New York', country: 'USA' },
-          orderitems: [
-            {
-              name: 'Modern Sofa',
-              color: 'Grey',
-              size: 'Three Seater', // <-- size added
-              dimension: '200x90x80 cm',
-              image: 'https://picsum.photos/500/500?random=1',
-            },
-          ],
-          totalprice: 499.99,
-          ispaid: true,
-        },
-        {
-          _id: '124',
-          createdAt: new Date(),
-          shippingaddress: { city: 'Delhi', country: 'India' },
-          orderitems: [
-            {
-              name: 'Dining Chair Set (2 pcs)',
-              color: 'Black',
-              size: 'Standard', // <-- size added
-              dimension: '50x50x90 cm',
-              image: 'https://picsum.photos/500/500?random=2',
-            },
-          ],
-          totalprice: 199.99,
-          ispaid: true,
-        },
-        {
-          _id: '125',
-          createdAt: new Date(),
-          shippingaddress: { city: 'Mumbai', country: 'India' },
-          orderitems: [
-            {
-              name: 'Wooden Coffee Table',
-              color: 'Brown',
-              size: 'Medium', // <-- size added
-              dimension: '120x60x45 cm',
-              image: 'https://picsum.photos/500/500?random=3',
-            },
-          ],
-          totalprice: 299.99,
-          ispaid: false,
-        },
-        {
-          _id: '126',
-          createdAt: new Date(),
-          shippingaddress: { city: 'Chicago', country: 'USA' },
-          orderitems: [
-            {
-              name: 'Recliner Chair',
-              color: 'Beige',
-              size: 'Single', // <-- size added
-              dimension: '100x90x100 cm',
-              image: 'https://picsum.photos/500/500?random=4',
-            },
-          ],
-          totalprice: 399.99,
-          ispaid: true,
-        },
-      ];
-      setorders(mockorder);
-    }, 1000);
-  }, []);
+    dispatch(fetchuserorders());
+  }, [dispatch]);
 
   const handlerowclick = (orderid) => {
     navigate(`/order/${orderid}`);
   };
+
+  if (loading) {
+    return (
+      <div className="max-w-7xl mx-auto p-4 sm:p-6">
+        <div className="text-center py-8">
+          <p className="text-lg text-gray-600">Loading orders...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="max-w-7xl mx-auto p-4 sm:p-6">
+        <div className="text-center py-8">
+          <p className="text-lg text-red-600">Error: {error}</p>
+          <button 
+            onClick={() => dispatch(fetchuserorders())}
+            className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-7xl mx-auto p-4 sm:p-6">
@@ -93,54 +54,79 @@ function Myorder() {
               <th className="px-6 py-3">Created</th>
               <th className="px-6 py-3">Shipping Address</th>
               <th className="px-6 py-3">Items</th>
-              <th className="px-6 py-3">Size</th> {/* <-- Size column added */}
               <th className="px-6 py-3">Price</th>
               <th className="px-6 py-3">Status</th>
             </tr>
           </thead>
           <tbody>
-            {orders.length > 0 ? (
-              orders.map((order) => (
-                <tr
-                  key={order._id}
-                  className="border-b hover:bg-gray-50 transition duration-150 cursor-pointer"
-                  onClick={() => handlerowclick(order._id)}
-                >
-                  <td className="px-6 py-4">
-                    <img
-                      src={order.orderitems[0].image}
-                      alt={order.orderitems[0].name}
-                      className="w-12 h-12 object-cover rounded-lg"
-                    />
-                  </td>
-                  <td className="px-6 py-4 font-medium text-gray-900">{order._id}</td>
-                  <td className="px-6 py-4">
-                    {order.createdAt.toLocaleDateString()}{' '}
-                    {new Date(order.createdAt).toLocaleTimeString()}
-                  </td>
-                  <td className="px-6 py-4">
-                    {order.shippingaddress
-                      ? `${order.shippingaddress.city}, ${order.shippingaddress.country}`
-                      : 'N/A'}
-                  </td>
-                  <td className="px-6 py-4">{order.orderitems.length}</td>
-                  <td className="px-6 py-4">{order.orderitems[0].size}</td> {/* <-- Size value */}
-                  <td className="px-6 py-4">${order.totalprice.toLocaleString()}</td>
-                  <td className="px-6 py-4">
-                    <span
-                      className={`${
-                        order.ispaid ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-                      } py-1 px-3 rounded-full text-xs font-semibold`}
-                    >
-                      {order.ispaid ? 'Paid' : 'Pending'}
-                    </span>
-                  </td>
-                </tr>
-              ))
+            {orders && orders.length > 0 ? (
+              orders.map((order) => {
+                const firstItem = order.orderitems?.[0];
+                const orderDate = order.createdAt ? new Date(order.createdAt) : new Date();
+                
+                return (
+                  <tr
+                    key={order._id}
+                    className="border-b hover:bg-gray-50 transition duration-150 cursor-pointer"
+                    onClick={() => handlerowclick(order._id)}
+                  >
+                    <td className="px-6 py-4">
+                      {firstItem?.images ? (
+                        <img
+                          src={firstItem.images}
+                          alt={firstItem.name || 'Product'}
+                          className="w-12 h-12 object-cover rounded-lg"
+                        />
+                      ) : (
+                        <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center">
+                          <span className="text-gray-500 text-xs">No Image</span>
+                        </div>
+                      )}
+                    </td>
+                    <td className="px-6 py-4 font-medium text-gray-900">
+                      {order._id ? `#${order._id.slice(-8)}` : 'N/A'}
+                    </td>
+                    <td className="px-6 py-4">
+                      {orderDate.toLocaleDateString()}{' '}
+                      {orderDate.toLocaleTimeString()}
+                    </td>
+                    <td className="px-6 py-4">
+                      {order.shippingaddress
+                        ? `${order.shippingaddress.city || 'N/A'}, ${order.shippingaddress.country || 'N/A'}`
+                        : 'N/A'}
+                    </td>
+                    <td className="px-6 py-4">
+                      {order.orderitems ? order.orderitems.length : 0}
+                    </td>
+                    <td className="px-6 py-4">
+                      ₹{order.totalprice ? Number(order.totalprice).toLocaleString() : '0'}
+                    </td>
+                    <td className="px-6 py-4">
+                      <span
+                        className={`${
+                          order.ispaid 
+                            ? 'bg-green-100 text-green-700' 
+                            : 'bg-yellow-100 text-yellow-700'
+                        } py-1 px-3 rounded-full text-xs font-semibold`}
+                      >
+                        {order.ispaid ? 'Paid' : 'Pending'}
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })
             ) : (
               <tr>
-                <td colSpan="8" className="px-6 py-6 text-center text-gray-500 text-base">
-                  You have no orders.
+                <td colSpan="7" className="px-6 py-6 text-center text-gray-500 text-base">
+                  <div className="py-8">
+                    <p className="text-lg mb-4">You have no orders yet.</p>
+                    <button 
+                      onClick={() => navigate('/')}
+                      className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+                    >
+                      Start Shopping
+                    </button>
+                  </div>
                 </td>
               </tr>
             )}

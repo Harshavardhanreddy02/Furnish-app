@@ -201,7 +201,17 @@ const getcartitems = async (req, res) => {
 
   try {
     const cart = await getcart(userid, guestid);
-    if (!cart) return res.status(404).json({ message: "Cart not found" });
+    if (!cart) {
+      // Return empty cart instead of 404
+      return res.status(200).json({ 
+        cart: {
+          products: [],
+          totalprice: 0,
+          user: userid || null,
+          guestid: guestid || null
+        }
+      });
+    }
     return res.status(200).json({ cart });
   } catch (err) {
     console.error(err);

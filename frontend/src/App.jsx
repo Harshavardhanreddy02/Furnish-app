@@ -19,6 +19,7 @@ import Usermanagement from './components/Admin/Usermanagement'
 import Productmanagement from './components/Admin/Productmanagement'
 import Editproduct from './components/Admin/Editproduct'
 import Ordermanagement from './components/Admin/Ordermanagement'
+import Protectedroute from './components/CommonPages/Protectedroute'
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
         </Route>
 
         {/* Admin Layout */}
-        <Route path="/admin" element={<Adminlayout />}>
+        <Route path="/admin" element={<Protectedroute role='admin'><Adminlayout /></Protectedroute>}>
           <Route index element={<Adminhomepage />} />
           <Route path="users" element={<Usermanagement />} />
           <Route path='products' element={<Productmanagement />}/>

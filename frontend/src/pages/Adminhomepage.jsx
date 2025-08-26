@@ -1,36 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux'
+import { fetchadminproducts } from '../redux/Slices/adminproductSlice';
+import { fetchallorders } from '../redux/Slices/adminorderSlice';
+import { useEffect } from 'react';
 
 function AdminHomepage() {
-  const orders = [
-    {
-      _id: 123,
-      user: { name: 'John Doe' },
-      totalPrice: 11000, // Furniture price in ₹
-      status: 'processing',
-    },
-    {
-      _id: 124,
-      user: { name: 'Jane Smith' },
-      totalPrice: 25000,
-      status: 'shipped',
-    },
-  ];
+
+  const dispatch = useDispatch()
+  const {products,loading,productsloading,productserror} = useSelector((state) => state.adminproducts) 
+  const {orders,totalorder,totalsales,loading:ordersloading,error:orderserror} = useSelector((state) => state.adminorders)
+
+  useEffect(() => {
+      dispatch(fetchadminproducts())
+      dispatch(fetchallorders())
+  },[dispatch])
+
+  const isLoading = productsloading || ordersloading || loading
+  const hasError = productserror || orderserror
 
   return (
     <div className="max-w-7xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-8 text-gray-800">Furnish Store Admin Dashboard</h1>
 
-      {/* Overview Cards */}
+      {isLoading && (<p>Loading...</p>)}
+      {!isLoading && hasError && (
+        <div className='space-y-2'>
+          {productserror && <p className='text-red-500'>Error fetching products: {String(productserror)}</p>}
+          {orderserror && <p className='text-red-500'>Error fetching orders: {String(orderserror)}</p>}
+        </div>
+      )}
+
+      {!isLoading && !hasError && (
+      <>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         <div className="p-6 shadow-md rounded-lg bg-white">
           <h2 className="text-xl font-semibold text-gray-700 mb-2">Revenue</h2>
-          <p className="text-2xl text-gray-900">₹10,00,000</p>
+          <p className="text-2xl text-gray-900">₹{Number(totalsales || 0).toLocaleString()}</p>
         </div>
 
         <div className="p-6 shadow-md rounded-lg bg-white">
           <h2 className="text-xl font-semibold text-gray-700 mb-2">Total Orders</h2>
-          <p className="text-2xl text-gray-900">{orders.length}</p>
+          <p className="text-2xl text-gray-900">{Number(totalorder || orders?.length || 0)}</p>
           <Link to="/admin/orders" className="text-blue-500 hover:underline text-sm mt-2 inline-block">
             Manage Orders
           </Link>
@@ -38,7 +49,7 @@ function AdminHomepage() {
 
         <div className="p-6 shadow-md rounded-lg bg-white">
           <h2 className="text-xl font-semibold text-gray-700 mb-2">Total Products</h2>
-          <p className="text-2xl text-gray-900">100</p>
+          <p className="text-2xl text-gray-900">{products?.length || 0}</p>
           <Link to="/admin/products" className="text-blue-500 hover:underline text-sm mt-2 inline-block">
             Manage Products
           </Link>
@@ -58,12 +69,12 @@ function AdminHomepage() {
               </tr>
             </thead>
             <tbody>
-              {orders.length > 0 ? (
+              {orders && orders.length > 0 ? (
                 orders.map((order) => (
                   <tr key={order._id} className="border-b hover:bg-gray-50 cursor-pointer">
-                    <td className="p-4">{order.user.name}</td>
-                    <td className="p-4">₹{order.totalPrice}</td>
-                    <td className="p-4 capitalize">{order.status}</td>
+                    <td className="p-4">{order.user?.name || 'N/A'}</td>
+                    <td className="p-4">₹{Number(order.totalprice || order.totalPrice || 0).toLocaleString()}</td>
+                    <td className="p-4 capitalize">{order.status || (order.ispaid ? 'paid' : 'pending')}</td>
                   </tr>
                 ))
               ) : (
@@ -77,6 +88,8 @@ function AdminHomepage() {
           </table>
         </div>
       </div>
+      </>
+      )}
     </div>
   );
 }

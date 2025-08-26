@@ -4,6 +4,8 @@ const Product = require('./models/Product')
 const User = require('./models/User')
 const Cart = require('./models/Cart')
 const products = require('./data/product')
+const Order = require('./models/Order')
+const Checkout = require('./models/Checkout')
 
 dotenv.config()
 
@@ -19,6 +21,9 @@ const seeddata = async () => {
         await Product.deleteMany()
         await User.deleteMany()
         await Cart.deleteMany()
+        await Order.deleteMany()
+        await Checkout.deleteMany()
+
 
         const createUser = await User.create({
             name: "admin user",

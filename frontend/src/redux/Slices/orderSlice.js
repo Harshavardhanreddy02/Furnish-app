@@ -6,7 +6,7 @@ export const fetchuserorders = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/orders/my-orders`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/order/my-orders`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('usertoken')}`
@@ -25,7 +25,7 @@ export const fetchorderdetails = createAsyncThunk(
   async (orderid, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/orders/${orderid}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/order/${orderid}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('usertoken')}`
@@ -57,8 +57,8 @@ const orderslice = createSlice({
       })
       .addCase(fetchuserorders.fulfilled, (state, action) => {
         state.loading = false
-        state.orders = action.payload.orders || []
-        state.totalorder = action.payload.total || 0
+        state.orders = action.payload.orders || action.payload || []
+        state.totalorder = action.payload.total || action.payload.length || 0
       })
       .addCase(fetchuserorders.rejected, (state, action) => {
         state.loading = false

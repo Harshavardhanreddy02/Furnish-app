@@ -7,7 +7,9 @@ const checkoutProductSchema = new mongoose.Schema(
     name: { type: String, required: true },
     images: { type: String, required: true },
     price: { type: Number, required: true },
-    quantity: { type: Number, required: true }
+    quantity: { type: Number, required: true },
+    sizes: { type: String }, // Add sizes field
+    colors: { type: String } // Add colors field
   },
   { _id: false } 
 );

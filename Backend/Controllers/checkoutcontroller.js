@@ -66,9 +66,30 @@ const paymentcheckout = async (req, res) => {
     }
 
     if (checkout.ispaid && !checkout.isfinalized) {
+      // Debug: Log checkout data
+      console.log('Checkout data:', checkout);
+      console.log('Checkout items:', checkout.checkoutitems);
+      console.log('First checkout item:', checkout.checkoutitems[0]);
+      
       const finalorder = await Order.create({
         user: checkout.user,
-        orderitems: checkout.checkoutitems, // ✅ Corrected field
+        orderitems: checkout.checkoutitems.map(item => {
+          // Ensure we have the correct field names and values
+          const orderItem = {
+            productid: item.productid,
+            name: item.name,
+            images: item.images,
+            price: item.price,
+            quantity: item.quantity,
+            sizes: item.sizes || 'Standard',
+            colors: item.colors || 'Standard'
+          };
+          
+          // Log the order item being created for debugging
+          console.log('Creating order item:', orderItem);
+          
+          return orderItem;
+        }),
         shippingaddress: checkout.shippingaddress,
         paymentmethod: checkout.paymentmethod,
         totalprice: checkout.totalprice,

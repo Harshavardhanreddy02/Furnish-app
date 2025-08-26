@@ -1,18 +1,40 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import login from '../images/login.jpg';
 import {loginuser} from '../redux/Slices/authSlice'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import {mergecart} from '../redux/Slices/cartSlice'
+import { toast } from 'sonner'
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch()
-  
-  const handlesubmit = (e) =>
-  {
-     e.preventDefault();
-     dispatch(loginuser({email,password}))
+  const navigate = useNavigate();
+  const location = useLocation()
+
+  const {guestid} = useSelector((state) => state.auth)
+  const {cart} = useSelector((state) => state.cart)
+
+  const redirect = new URLSearchParams(location.search).get("redirect") || "/";
+  const ischeckoutredirect = redirect.includes("checkout");
+
+  // Do not auto-redirect on visiting /login. We will navigate after a successful login submission.
+
+  const handlesubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const loggedInUser = await dispatch(loginuser({ email, password })).unwrap();
+
+      if (cart?.products?.length > 0 && guestid) {
+        await dispatch(mergecart({ guestid, user: loggedInUser }));
+      }
+
+      navigate(ischeckoutredirect ? "/checkout" : "/");
+    } catch (err) {
+      const message = err?.message || err?.error || 'Login failed. Please check your credentials.'
+      toast.error(message)
+    }
   }
 
   return (
@@ -56,11 +78,11 @@ function Login() {
           </div>
 
           {/* Forgot Password */}
-          <div className="text-right mb-6">
+          {/* <div className="text-right mb-6">
             <Link to="/forgot-password" className="text-sm text-blue-600 hover:underline">
               Forgot Password?
             </Link>
-          </div>
+          </div> */}
 
           {/* Submit Button */}
           <button
@@ -73,7 +95,7 @@ function Login() {
           {/* Register Redirect */}
           <p className="mt-6 text-center text-sm text-gray-700">
             Don't have an account?{" "}
-            <Link to="/register" className="text-blue-500 hover:underline">
+            <Link to={`/register?redirect=${encodeURIComponent(redirect)}`} className="text-blue-500 hover:underline">
               Sign up
             </Link>
           </p>

@@ -1,27 +1,44 @@
-import React from 'react'
-import {useState} from 'react'
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 import signup from '../images/signup.jpg';
 import { registeruser } from '../redux/Slices/authSlice';
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { toast } from 'sonner'
 
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setname] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
+
   const dispatch = useDispatch()
-  
-  const handlesubmit= (e) =>
-  {
-     e.preventDefault();
-    //  if (password !== confirmPassword) {
-    //    alert("Passwords do not match");
-    //    return;
-    //  }
-    dispatch(registeruser({name,email,password}))
-     
+  const navigate = useNavigate();
+
+  const handlesubmit = async (e) => {
+    e.preventDefault();
+    
+    // Validate passwords match
+    if (password !== confirmPassword) {
+      toast.error('Passwords do not match');
+      return;
+    }
+
+    // Validate password length
+    if (password.length < 6) {
+      toast.error('Password must be at least 6 characters long');
+      return;
+    }
+
+    try {
+      await dispatch(registeruser({ name, email, password })).unwrap();
+      toast.success('Registration successful. Please sign in.');
+      navigate('/login');
+    } catch (err) {
+      const message = err?.message || err?.error || 'Registration failed. Please try again.'
+      toast.error(message)
+    }
   }
+
   return (
     <>
     <div className="flex">
@@ -32,9 +49,9 @@ function Register() {
             <h2 className="text-xl font-medium text-gray-800">Register</h2>
           </div>
 
-          <h2 className="text-2xl font-bold text-center mb-4 text-gray-900">Welcome Back!</h2>
+          <h2 className="text-2xl font-bold text-center mb-4 text-gray-900">Create your account</h2>
           <p className="text-center text-gray-600 mb-6">
-            Please enter your credentials to access your account.
+            Please enter your details to sign up.
           </p>
 
           {/* Email Field */}
@@ -62,9 +79,8 @@ function Register() {
             />
           </div>
 
-
           {/* Password Field */}
-          <div className="mb-2">
+          <div className="mb-4">
             <label className="block text-sm font-semibold mb-2 text-gray-700">Password</label>
             <input
               type="password"
@@ -76,7 +92,8 @@ function Register() {
             />
           </div>
 
-           {/* <div className="mb-2">
+          {/* Confirm Password Field */}
+          <div className="mb-6">
             <label className="block text-sm font-semibold mb-2 text-gray-700">Confirm Password</label>
             <input
               type="password"
@@ -86,9 +103,7 @@ function Register() {
               placeholder="Confirm your password"
               required
             />
-          </div> */}
-
-          {/* Forgot Password */}
+          </div>
 
           {/* Submit Button */}
           <button
