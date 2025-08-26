@@ -13,7 +13,7 @@ function Login() {
   const navigate = useNavigate();
   const location = useLocation()
 
-  const {guestid} = useSelector((state) => state.auth)
+  const {guestid,loading} = useSelector((state) => state.auth)
   const {cart} = useSelector((state) => state.cart)
 
   const redirect = new URLSearchParams(location.search).get("redirect") || "/";
@@ -89,7 +89,7 @@ function Login() {
             type="submit"
             className="w-full bg-black text-white p-3 rounded-lg font-semibold hover:bg-gray-800 transition"
           >
-            Sign in
+            {loading ? "loading..." : "Sign in"}
           </button>
 
           {/* Register Redirect */}

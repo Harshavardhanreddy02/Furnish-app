@@ -78,6 +78,16 @@ function Orderdetailspage() {
     }
   };
 
+  const status = (orderdetails.status || '').toLowerCase()
+  const statusLabel = status ? status.charAt(0).toUpperCase() + status.slice(1) : 'Processing'
+  const statusClasses = status === 'cancelled'
+    ? 'bg-red-100 text-red-700'
+    : status === 'delivered'
+      ? 'bg-green-100 text-green-700'
+      : status === 'shipped'
+        ? 'bg-blue-100 text-blue-700'
+        : 'bg-yellow-100 text-yellow-700'
+
   return (
     <div className='max-w-7xl mx-auto p-4 sm:p-6'>
       <h2 className='text-2xl md:text-3xl font-bold mb-6'>Order Details</h2>
@@ -95,22 +105,19 @@ function Orderdetailspage() {
           </div>
           <div className='flex flex-col sm:items-end mt-4 sm:mt-0'>
             <span
-              className={`${
-                orderdetails.ispaid
-                  ? 'bg-green-100 text-green-700'
-                  : 'bg-yellow-100 text-yellow-700'
-              } px-3 py-1 rounded-full text-sm font-medium mb-2`}
+              className={`${orderdetails.ispaid ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'} px-3 py-1 rounded-full text-sm font-medium mb-2`}
             >
               {orderdetails.ispaid ? 'Paid' : 'Pending Payment'}
             </span>
             <span
-              className={`${
-                orderdetails.isdelivered
-                  ? 'bg-green-100 text-green-700'
-                  : 'bg-yellow-100 text-yellow-700'
-              } px-3 py-1 rounded-full text-sm font-medium mb-2`}
+              className={`${orderdetails.isdelivered ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'} px-3 py-1 rounded-full text-sm font-medium mb-2`}
             >
               {orderdetails.isdelivered ? 'Delivered' : 'Pending Delivery'}
+            </span>
+            <span
+              className={`${statusClasses} px-3 py-1 rounded-full text-sm font-medium`}
+            >
+              Status: {statusLabel}
             </span>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { clearcart } from '../redux/Slices/cartSlice';
 import { toast } from 'sonner';
@@ -10,7 +10,7 @@ function OrderConfirmationPage() {
   const location = useLocation();
   const [orderData, setOrderData] = useState(null);
   
-  const { user } = useSelector((state) => state.auth);
+  // const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     // Get order data from location state or try to fetch from localStorage

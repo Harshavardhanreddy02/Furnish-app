@@ -1,36 +1,48 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux'
+import {deleteproduct, fetchadminproducts} from '../../redux/Slices/adminproductSlice'
 
 function ProductManagement() {
-  const products = [
-    {
-      _id: 101,
-      name: "Modern Sofa",
-      price: 499,
-      sku: "SOF101",
-      image: "https://picsum.photos/100/100?random=1",
-    },
-    {
-      _id: 102,
-      name: "Dining Chair",
-      price: 149,
-      sku: "CHA102",
-      image: "https://picsum.photos/100/100?random=2",
-    },
-    {
-      _id: 103,
-      name: "Coffee Table",
-      price: 249,
-      sku: "TAB103",
-      image: "https://picsum.photos/100/100?random=3",
-    },
-  ];
+ 
+  const dispatch = useDispatch()
+  const {products,loading,error} = useSelector((state) => state.adminproducts)
 
+  useEffect(() =>
+  {
+      dispatch(fetchadminproducts())
+  },[dispatch])
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
-      console.log("Deleted:", id);
+     dispatch(deleteproduct(id))
     }
   };
+  if(loading)
+  {
+    return <p>Loading ..</p>
+
+  }
+  if(error)
+  {
+    return <p>Error:{String(error)}</p>
+  }
+
+  const getImageSrc = (images) => {
+    if (!images) return ''
+    // images could be array of objects [{url, altText}], array of strings, or a single string
+    if (Array.isArray(images)) {
+      if (images.length === 0) return ''
+      const first = images[0]
+      if (first && typeof first === 'object' && first.url) return first.url
+      if (typeof first === 'string') return first
+      return ''
+    }
+    if (typeof images === 'object' && images.url) return images.url
+    if (typeof images === 'string') return images
+    return ''
+  }
+
+  const placeholder = 'https://via.placeholder.com/64?text=Img'
 
   return (
     <div className='max-w-7xl mx-auto p-6'>
@@ -50,19 +62,21 @@ function ProductManagement() {
             </tr>
           </thead>
           <tbody>
-            {products.length > 0 ? (
-              products.map((product) => (
+            {products && products.length > 0 ? (
+              products.map((product) => {
+                const src = getImageSrc(product.images) || placeholder
+                return (
                 <tr key={product._id} className='border-b hover:bg-gray-50'>
                   <td className='p-4'>
                     <img
-                      src={product.image}
+                      src={src}
                       alt={product.name}
                       className='w-16 h-16 object-cover rounded'
                     />
                   </td>
                   <td className='p-4 font-medium text-gray-900'>{product.name}</td>
-                  <td className='p-4'>${product.price}</td>
-                  <td className='p-4'>{product.sku}</td>
+                  <td className='p-4'>₹{Number(product.price || 0).toLocaleString()}</td>
+                  <td className='p-4'>{product.sku || '-'}</td>
                   <td className='p-4 flex gap-2'>
                     <Link
                       to={`/admin/products/${product._id}/edit`}
@@ -78,7 +92,7 @@ function ProductManagement() {
                     </button>
                   </td>
                 </tr>
-              ))
+              )})
             ) : (
               <tr>
                 <td colSpan={5} className='p-4 text-center text-gray-500'>

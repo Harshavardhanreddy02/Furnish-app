@@ -1,29 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux'
+import {useNavigate} from 'react-router-dom'
+import {fetchallorders,updateorderstatus} from '../../redux/Slices/adminorderSlice'
 
 function OrderManagement() {
-  const [orders, setOrders] = useState([
-    {
-      _id: 1234,
-      user: { name: 'John Doe' },
-      totalprice: 11000, // Furniture price in ₹
-      status: 'processing',
-    },
-    {
-      _id: 1235,
-      user: { name: 'Jane Smith' },
-      totalprice: 21000,
-      status: 'shipped',
-    },
-  ]);
+ 
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const {user} = useSelector((state) => state.auth)
+  const {orders = [],loading,error} = useSelector((state) => state.adminorders)
 
+  useEffect(() =>
+  {
+        if(!user || String(user.role || '').toLowerCase() !== 'admin')
+        {
+          navigate('/')
+        }
+        else{
+          dispatch(fetchallorders())
+        }
+  },[dispatch,user,navigate])
   // Update order status
-  const handleStatusChange = (orderId, status) => {
-    const updatedOrders = orders.map((order) =>
-      order._id === orderId ? { ...order, status } : order
-    );
-    setOrders(updatedOrders);
-    console.log({ id: orderId, status }); // Simulate API call
+  const handleStatusChange = (orderid, status) => {
+    dispatch(updateorderstatus({id:orderid,status}))
   };
+  if(loading)
+  {
+    return <p>Loading ...</p>
+  }
+  if(error)
+  {
+    return <p>Error:{String(error)} </p>
+  }
 
   return (
     <div className="max-w-7xl mx-auto p-6">
@@ -52,8 +60,8 @@ function OrderManagement() {
                   <td className="py-4 px-4 font-medium text-gray-900">
                     #{order._id}
                   </td>
-                  <td className="p-4">{order.user.name}</td>
-                  <td className="p-4">₹{order.totalprice}</td>
+                  <td className="p-4">{order.user?.name || 'N/A'}</td>
+                  <td className="p-4">₹{Number(order.totalprice || 0).toLocaleString()}</td>
                   <td className="p-4">
                     <select
                       value={order.status}
